@@ -137,7 +137,7 @@ namespace CaseloadManager.Data
                     SessionsPerWeek = 0,
                     FacilityId = 5,
                     StatusTypeId = 1,
-                    UserId = user.Id, //Do I need this?
+                    UserId = user.Id,
                 },
                 new Client()
                 {
@@ -182,7 +182,7 @@ namespace CaseloadManager.Data
                     SessionsPerWeek = 0,
                     FacilityId = 1,
                     StatusTypeId = 2,
-                    UserId = user.Id, //Do I need this?
+                    UserId = user.Id, 
                 },
                 new Client()
                 {
