@@ -18,10 +18,12 @@ namespace CaseloadManager.Data
         public DbSet<Client> Clients { get; set; }
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Assessment> Assessments { get; set; }
+        public DbSet<ClientAssessment> ClientAssessments { get; set; }
         public DbSet<Goal> Goals { get; set; }
         public DbSet<TherapySession> TherapySessions { get; set; }
-        //Do I want these for the models for building type
-        public DbSet<FacilityType> BuildingTypes { get; set; }
+        public DbSet<TherapySessionGoal> TherapySessionsGoals { get; set; }
+        
+        public DbSet<FacilityType> FacilityTypes { get; set; }
         public DbSet<StatusType> StatusTypes { get; set; }
 
 
