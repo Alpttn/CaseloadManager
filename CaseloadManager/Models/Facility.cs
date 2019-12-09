@@ -25,8 +25,7 @@ namespace CaseloadManager.Models
         [Required]
         public string UserId { get; set; }
 
-        //public virtual ICollection<Client> Clients { get; set; }
-
+        public virtual ICollection<Client> Clients { get; set; }
 
     }
 }

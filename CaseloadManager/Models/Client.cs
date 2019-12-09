@@ -21,9 +21,13 @@ namespace CaseloadManager.Models
         [Display(Name = "Birthdate")]
         public DateTime Birthdate { get; set; }
         
-        [Required]
+       
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
+
+        
+        [Display(Name = "Sessions Per Week")]
+        public int SessionsPerWeek { get; set; }
 
         [Required]
         public int StatusId { get; set; }
@@ -35,10 +39,10 @@ namespace CaseloadManager.Models
         public ApplicationUser User { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        //public virtual ICollection<TherapySession> TherapySessions { get; set; }
-        //public virtual ICollection<Assessment> Assessmets { get; set; }
-        //public virtual ICollection<Goal> Goals { get; set; }
+        public virtual ICollection<TherapySession> TherapySessions { get; set; }
+        public virtual ICollection<Assessment> Assessmets { get; set; }
+        public virtual ICollection<Goal> Goals { get; set; }
     }
 }
