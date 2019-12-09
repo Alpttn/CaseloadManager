@@ -9,8 +9,8 @@ namespace CaseloadManager.Models
     public class Assessment
     {
         [Required]
-        [Display(Name = "TestName")]
-        public DateTime Date { get; set; }
+        [Display(Name = "Test Name")]
+        public string TestName { get; set; }
 
         [Required]
         [Display(Name = "Oldest Allowed")]
@@ -20,7 +20,7 @@ namespace CaseloadManager.Models
         [Display(Name = "Youngest Allowed")]
         public int YoungestAllowed { get; set; }
 
-        //[Required]
-        //public int ClientId { get; set; }
+        public virtual ICollection<ClientAssessment> ClientAssessmets { get; set; }
+        
     }
 }

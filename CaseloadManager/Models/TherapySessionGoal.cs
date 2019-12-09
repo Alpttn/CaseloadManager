@@ -8,6 +8,9 @@ namespace CaseloadManager.Models
 {
     public class TherapySessionGoal
     {
+        [Key]
+        public int TherapySessionGoalId { get; set; }
+
         [Required]
         public int GoalId { get; set; }
 
@@ -15,6 +18,6 @@ namespace CaseloadManager.Models
         public int TherapySessionId { get; set; }
 
         public Goal Goal { get; set; }
-        //public TherapySession TherapySession { get; set; }
+        public TherapySession TherapySession { get; set; }
     }
 }

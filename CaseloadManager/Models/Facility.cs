@@ -18,6 +18,7 @@ namespace CaseloadManager.Models
 
         [Required]
         public string BuildingTypeId { get; set; }
+        public FacilityType BuildingType { get; set; }
 
         [Required]
         public ApplicationUser User { get; set; }

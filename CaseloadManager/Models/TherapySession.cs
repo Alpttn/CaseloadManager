@@ -19,5 +19,9 @@ namespace CaseloadManager.Models
 
         [Required]
         public int ClientId { get; set; }
+        public Client Client { get; set; }
+
+        public virtual ICollection<TherapySessionGoal> TherapySessionGoals { get; set; }
+
     }
 }

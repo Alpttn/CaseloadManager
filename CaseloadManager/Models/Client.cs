@@ -30,10 +30,12 @@ namespace CaseloadManager.Models
         public int SessionsPerWeek { get; set; }
 
         [Required]
-        public int StatusId { get; set; }
+        public int StatusTypeId { get; set; }
+        public StatusType StatusType { get; set; }
 
         [Required]
         public int FacilityId { get; set; }
+        public Facility Facility { get; set; }
 
         [Required]
         public ApplicationUser User { get; set; }
@@ -42,7 +44,8 @@ namespace CaseloadManager.Models
         public string UserId { get; set; }
 
         public virtual ICollection<TherapySession> TherapySessions { get; set; }
-        public virtual ICollection<Assessment> Assessmets { get; set; }
+        public virtual ICollection<ClientAssessment> ClientAssessmets { get; set; }
         public virtual ICollection<Goal> Goals { get; set; }
+        
     }
 }

@@ -21,7 +21,7 @@ namespace CaseloadManager.Data
         public DbSet<Goal> Goals { get; set; }
         public DbSet<TherapySession> TherapySessions { get; set; }
         //Do I want these for the models for building type
-        public DbSet<BuildingType> BuildingTypes { get; set; }
+        public DbSet<FacilityType> BuildingTypes { get; set; }
         public DbSet<StatusType> StatusTypes { get; set; }
 
 
@@ -63,35 +63,35 @@ namespace CaseloadManager.Data
             modelBuilder.Entity<ApplicationUser>().HasData(user2);
 
             //create facility types
-            modelBuilder.Entity<BuildingType>().HasData(
-                new BuildingType()
+            modelBuilder.Entity<FacilityType>().HasData(
+                new FacilityType()
                 {
-                    BuildingTypeId = 1,
+                    FacilityTypeId = 1,
                     Name = "Elementary School"
                 },
-                new BuildingType()
+                new FacilityType()
                 {
-                    BuildingTypeId = 2,
+                    FacilityTypeId = 2,
                     Name = "Middle School"
                 },
-                new BuildingType()
+                new FacilityType()
                 {
-                    BuildingTypeId = 3,
+                    FacilityTypeId = 3,
                     Name = "Highschool"
                 },
-                new BuildingType()
+                new FacilityType()
                 {
-                    BuildingTypeId = 4,
+                    FacilityTypeId = 4,
                     Name = "Hospital"
                 },
-                new BuildingType()
+                new FacilityType()
                 {
-                    BuildingTypeId = 5,
+                    FacilityTypeId = 5,
                     Name = "Skilled Nursing Facility"
                 },
-                new BuildingType()
+                new FacilityType()
                 {
-                    BuildingTypeId = 6,
+                    FacilityTypeId = 6,
                     Name = "Clinic"
                 }
                );
@@ -136,7 +136,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 5,
-                    StatusId = 1,
+                    StatusTypeId = 1,
                     UserId = user.Id, //Do I need this?
                 },
                 new Client()
@@ -147,7 +147,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 1,
-                    StatusId = 1,
+                    StatusTypeId = 1,
                     UserId = user.Id,
                 },
                 new Client()
@@ -158,7 +158,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 1,
-                    StatusId = 1,
+                    StatusTypeId = 1,
                     UserId = user.Id,
                 },
                 new Client()
@@ -169,7 +169,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 5,
-                    StatusId = 1,
+                    StatusTypeId = 1,
                     UserId = user.Id,
                 },
                 //needs Assessment
@@ -181,7 +181,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 1,
-                    StatusId = 2,
+                    StatusTypeId = 2,
                     UserId = user.Id, //Do I need this?
                 },
                 new Client()
@@ -192,7 +192,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 1,
-                    StatusId = 2,
+                    StatusTypeId = 2,
                     UserId = user.Id,
                 },
                 new Client()
@@ -203,7 +203,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 1,
-                    StatusId = 2,
+                    StatusTypeId = 2,
                     UserId = user.Id,
                 },
                 new Client()
@@ -214,7 +214,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 5,
-                    StatusId = 2,
+                    StatusTypeId = 2,
                     UserId = user.Id,
                 },
                 // eligible
@@ -226,7 +226,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Aphasia",
                     SessionsPerWeek = 2,
                     FacilityId = 5,
-                    StatusId = 3,
+                    StatusTypeId = 3,
                     UserId = user.Id,
                 },
                 new Client()
@@ -237,7 +237,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Language Disorder",
                     SessionsPerWeek = 1,
                     FacilityId = 1,
-                    StatusId = 3,
+                    StatusTypeId = 3,
                     UserId = user.Id,
                 },
                 new Client()
@@ -248,7 +248,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Language Disorder",
                     SessionsPerWeek = 3,
                     FacilityId = 1,
-                    StatusId = 3,
+                    StatusTypeId = 3,
                     UserId = user.Id,
                 },
                 new Client()
@@ -259,7 +259,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Dysphagia",
                     SessionsPerWeek = 3,
                     FacilityId = 5,
-                    StatusId = 3,
+                    StatusTypeId = 3,
                     UserId = user.Id,
                 },
                 new Client()
@@ -270,7 +270,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Dysphagia",
                     SessionsPerWeek = 3,
                     FacilityId = 5,
-                    StatusId = 3,
+                    StatusTypeId = 3,
                     UserId = user.Id,
                 },
                 // ineligible
@@ -282,7 +282,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 1,
-                    StatusId = 4,
+                    StatusTypeId = 4,
                     UserId = user.Id,
                 },
                 new Client()
@@ -293,7 +293,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 1,
-                    StatusId = 4,
+                    StatusTypeId = 4,
                     UserId = user.Id,
                 },
                 new Client()
@@ -304,7 +304,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 5,
-                    StatusId = 4,
+                    StatusTypeId = 4,
                     UserId = user.Id,
                 },
                 new Client()
@@ -315,7 +315,7 @@ namespace CaseloadManager.Data
                     Diagnosis = null,
                     SessionsPerWeek = 0,
                     FacilityId = 5,
-                    StatusId = 4,
+                    StatusTypeId = 4,
                     UserId = user.Id,
                 },
                 // discharged
@@ -327,7 +327,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "TBI",
                     SessionsPerWeek = 3,
                     FacilityId = 5,
-                    StatusId = 5,
+                    StatusTypeId = 5,
                     UserId = user.Id,
                 },
                 new Client()
@@ -338,7 +338,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Speech Disorder",
                     SessionsPerWeek = 2,
                     FacilityId = 1,
-                    StatusId = 5,
+                    StatusTypeId = 5,
                     UserId = user.Id,
                 },
                 new Client()
@@ -349,7 +349,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Language Disorder",
                     SessionsPerWeek = 2,
                     FacilityId = 1,
-                    StatusId = 5,
+                    StatusTypeId = 5,
                     UserId = user.Id,
                 },
                 new Client()
@@ -360,7 +360,7 @@ namespace CaseloadManager.Data
                     Diagnosis = "Dysphagia",
                     SessionsPerWeek = 2,
                     FacilityId = 5,
-                    StatusId = 5,
+                    StatusTypeId = 5,
                     UserId = user.Id,
                 }
                 );

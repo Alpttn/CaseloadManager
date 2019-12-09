@@ -14,13 +14,15 @@ namespace CaseloadManager.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Date")]
+        [Display(Name = "Date Administered")]
         public DateTime DateAdministered { get; set; }
 
         [Required]
         public int ClientId { get; set; }
+        public Client Client { get; set; }
 
         [Required]
         public int AssessmentId { get; set; }
+        public Assessment Assessment { get; set; }
     }
 }

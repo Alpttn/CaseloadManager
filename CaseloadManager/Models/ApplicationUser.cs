@@ -21,8 +21,8 @@ namespace CaseloadManager.Models
         [Display(Name = "License Number")]
         public string LicenseNumber { get; set; }
 
-        //public virtual ICollection<Client> Clients { get; set; }
+        public virtual ICollection<Client> Clients { get; set; }
 
-        //public virtual ICollection<Facility> Facilities { get; set; }
+        public virtual ICollection<Facility> Facilities { get; set; }
     }
 }

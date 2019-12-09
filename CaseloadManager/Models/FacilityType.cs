@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CaseloadManager.Models
 {
-    public class BuildingType
+    public class FacilityType
     {
         [Key]
-        public int BuildingTypeId { get; set; } //is it id or just BuildingType
+        public int FacilityTypeId { get; set; } 
 
         [Required]
         [StringLength(255)]
