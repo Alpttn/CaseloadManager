@@ -8,6 +8,8 @@ namespace CaseloadManager.Models
 {
     public class ClientAssessment
     {
+        [Key]
+        public int ClientAssessmentId { get; set; }
         [Required]
         [Display(Name = "Standardized Score")]
         public int StandarizedScore { get; set; }

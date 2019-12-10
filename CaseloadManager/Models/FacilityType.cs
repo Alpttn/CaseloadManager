@@ -12,7 +12,6 @@ namespace CaseloadManager.Models
         public int FacilityTypeId { get; set; } 
 
         [Required]
-        [StringLength(255)]
         [Display(Name = "Facility")]
         public string Name { get; set; }
 

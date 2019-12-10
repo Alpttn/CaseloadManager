@@ -8,6 +8,9 @@ namespace CaseloadManager.Models
 {
     public class Goal
     {
+        [Key]
+        public int GoalId { get; set; }
+
         [Required]
         [Display(Name = "Title")]
         public string Title { get; set; }

@@ -8,6 +8,9 @@ namespace CaseloadManager.Models
 {
     public class Facility
     {
+        [Key]
+        public int FacilityId { get; set; }
+
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -17,8 +20,8 @@ namespace CaseloadManager.Models
         public string Address { get; set; }
 
         [Required]
-        public string BuildingTypeId { get; set; }
-        public FacilityType BuildingType { get; set; }
+        public string FacilityTypeId { get; set; }
+        public FacilityType FacilityType { get; set; }
 
         [Required]
         public ApplicationUser User { get; set; }

@@ -9,10 +9,9 @@ namespace CaseloadManager.Models
     public class StatusType
     {
         [Key]
-        public int StatusTypeId { get; set; } //is it id or just StatusType
+        public int StatusTypeId { get; set; } 
 
         [Required]
-        [StringLength(255)]
         [Display(Name = "Status")]
         public string Name { get; set; }
 

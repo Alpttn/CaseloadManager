@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CaseloadManager.Models
 {
@@ -17,7 +18,17 @@ namespace CaseloadManager.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
+
         [Required]
+        [StringLength(7)]
         [Display(Name = "License Number")]
         public string LicenseNumber { get; set; }
 
