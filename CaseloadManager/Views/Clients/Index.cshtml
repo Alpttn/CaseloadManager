@@ -19,24 +19,11 @@
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Birthdate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Diagnosis)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SessionsPerWeek)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.StatusType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FacilityTypeId)
+                @Html.DisplayNameFor(model => model.FacilityId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -49,27 +36,15 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Birthdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diagnosis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SessionsPerWeek)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.StatusType.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FacilityTypeId)
+                @Html.DisplayFor(modelItem => item.FacilityId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit Status</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClientId">Discharge</a>
             </td>
         </tr>
 }

@@ -101,7 +101,7 @@ namespace CaseloadManager.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8add3abb-117a-4550-bcc4-286482677a3e",
+                            ConcurrencyStamp = "e4185a29-c42d-4b45-87b9-7af283d972e0",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -110,7 +110,7 @@ namespace CaseloadManager.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAYQe479ib5O5xQHboA4VzLMprQo4O6n0muqjybcFlrtr1LWv/5aSrJ2/Q7qTP1Gow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKeEatZxZYXFz7FYV++UWOXeBZtRDnNBBRtbiO0E5MninQIfiskMnAcMgDOmR+lssw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -120,20 +120,20 @@ namespace CaseloadManager.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cf7ab4bd-1269-4ea2-bc3f-6721e5c17a99",
-                            Email = "allie@gmail.com",
+                            ConcurrencyStamp = "7bc0ca32-15ca-441d-b7ff-331e0a279ecd",
+                            Email = "alliep@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Allison",
                             LastName = "Patton",
                             LicenseNumber = "1222020",
                             LockoutEnabled = false,
-                            NormalizedEmail = "ALLIE@GMAIL.COM",
-                            NormalizedUserName = "ALLIE@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEEoMEwt+xrQc80/zow1xNEHlJRpSA7VbniiY4JVMPtwc3TCQdKVKQl+BXPf3oc3MA==",
+                            NormalizedEmail = "ALLIEP@GMAIL.COM",
+                            NormalizedUserName = "ALLIEP@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI4v9MXd4hI3vUM4Axbe+9umlj68yIIG5hNIq4z5e56iW75Swfo+DAqcXpEwBQz8rg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794578",
                             TwoFactorEnabled = false,
-                            UserName = "Allie@gmail.com"
+                            UserName = "Alliep@gmail.com"
                         });
                 });
 
@@ -173,10 +173,7 @@ namespace CaseloadManager.Migrations
                     b.Property<string>("Diagnosis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FacilityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FacilityTypeId")
+                    b.Property<int>("FacilityId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstInitial")
@@ -213,7 +210,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 1,
                             Birthdate = new DateTime(1944, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "E",
                             LastName = "Smith",
                             SessionsPerWeek = 0,
@@ -224,7 +221,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 2,
                             Birthdate = new DateTime(2008, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "B",
                             LastName = "Johnson",
                             SessionsPerWeek = 0,
@@ -235,7 +232,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 3,
                             Birthdate = new DateTime(2011, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "C",
                             LastName = "Williams",
                             SessionsPerWeek = 0,
@@ -246,7 +243,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 4,
                             Birthdate = new DateTime(1940, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "D",
                             LastName = "Jones",
                             SessionsPerWeek = 0,
@@ -257,7 +254,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 5,
                             Birthdate = new DateTime(2011, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "L",
                             LastName = "Miller",
                             SessionsPerWeek = 0,
@@ -268,7 +265,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 6,
                             Birthdate = new DateTime(2009, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "A",
                             LastName = "Wilson",
                             SessionsPerWeek = 0,
@@ -279,7 +276,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 7,
                             Birthdate = new DateTime(2012, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "C",
                             LastName = "Murphy",
                             SessionsPerWeek = 0,
@@ -290,7 +287,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 8,
                             Birthdate = new DateTime(1936, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "S",
                             LastName = "Hernandez",
                             SessionsPerWeek = 0,
@@ -302,7 +299,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 9,
                             Birthdate = new DateTime(1942, 9, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Diagnosis = "Aphasia",
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "J",
                             LastName = "Rossi",
                             SessionsPerWeek = 2,
@@ -314,7 +311,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 10,
                             Birthdate = new DateTime(2011, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Diagnosis = "Language Disorder",
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "T",
                             LastName = "Peters",
                             SessionsPerWeek = 1,
@@ -326,7 +323,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 11,
                             Birthdate = new DateTime(2009, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Diagnosis = "Language Disorder",
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "E",
                             LastName = "Clark",
                             SessionsPerWeek = 3,
@@ -338,7 +335,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 12,
                             Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1934),
                             Diagnosis = "Dysphagia",
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "F",
                             LastName = "Anderson",
                             SessionsPerWeek = 3,
@@ -349,7 +346,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 13,
                             Birthdate = new DateTime(2011, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "R",
                             LastName = "Ivanov",
                             SessionsPerWeek = 0,
@@ -360,7 +357,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 14,
                             Birthdate = new DateTime(2012, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "H",
                             LastName = "Hansen",
                             SessionsPerWeek = 0,
@@ -371,7 +368,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 15,
                             Birthdate = new DateTime(1943, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "K",
                             LastName = "Brown",
                             SessionsPerWeek = 0,
@@ -382,7 +379,7 @@ namespace CaseloadManager.Migrations
                         {
                             ClientId = 16,
                             Birthdate = new DateTime(1946, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "O",
                             LastName = "Lopez",
                             SessionsPerWeek = 0,
@@ -394,7 +391,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 17,
                             Birthdate = new DateTime(1945, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Diagnosis = "TBI",
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "P",
                             LastName = "Tellei",
                             SessionsPerWeek = 3,
@@ -406,7 +403,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 18,
                             Birthdate = new DateTime(2010, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Diagnosis = "Speech Disorder",
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "M",
                             LastName = "Harris",
                             SessionsPerWeek = 2,
@@ -418,7 +415,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 19,
                             Birthdate = new DateTime(2010, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Diagnosis = "Language Disorder",
-                            FacilityTypeId = 1,
+                            FacilityId = 1,
                             FirstInitial = "N",
                             LastName = "Kim",
                             SessionsPerWeek = 2,
@@ -430,7 +427,7 @@ namespace CaseloadManager.Migrations
                             ClientId = 20,
                             Birthdate = new DateTime(1940, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Diagnosis = "Dysphagia",
-                            FacilityTypeId = 5,
+                            FacilityId = 2,
                             FirstInitial = "B",
                             LastName = "Taylor",
                             SessionsPerWeek = 2,
@@ -478,11 +475,7 @@ namespace CaseloadManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FacilityTypeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FacilityTypeId1")
+                    b.Property<int>("FacilityTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -495,11 +488,29 @@ namespace CaseloadManager.Migrations
 
                     b.HasKey("FacilityId");
 
-                    b.HasIndex("FacilityTypeId1");
+                    b.HasIndex("FacilityTypeId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Facilities");
+
+                    b.HasData(
+                        new
+                        {
+                            FacilityId = 1,
+                            Address = "100 plus park blvd",
+                            FacilityTypeId = 1,
+                            Name = "NSS Elementary School",
+                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+                        },
+                        new
+                        {
+                            FacilityId = 2,
+                            Address = "200 plus park blvd",
+                            FacilityTypeId = 5,
+                            Name = "NSS Skilled Nursing Facility",
+                            UserId = "00000000-ffff-ffff-ffff-ffffffffffff"
+                        });
                 });
 
             modelBuilder.Entity("CaseloadManager.Models.FacilityType", b =>
@@ -804,7 +815,9 @@ namespace CaseloadManager.Migrations
                 {
                     b.HasOne("CaseloadManager.Models.Facility", "Facility")
                         .WithMany("Clients")
-                        .HasForeignKey("FacilityId");
+                        .HasForeignKey("FacilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CaseloadManager.Models.StatusType", "StatusType")
                         .WithMany("Clients")
@@ -838,7 +851,9 @@ namespace CaseloadManager.Migrations
                 {
                     b.HasOne("CaseloadManager.Models.FacilityType", "FacilityType")
                         .WithMany("Facilities")
-                        .HasForeignKey("FacilityTypeId1");
+                        .HasForeignKey("FacilityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CaseloadManager.Models.ApplicationUser", "User")
                         .WithMany("Facilities")

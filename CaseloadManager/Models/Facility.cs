@@ -20,7 +20,7 @@ namespace CaseloadManager.Models
         public string Address { get; set; }
 
         [Required]
-        public string FacilityTypeId { get; set; }
+        public int FacilityTypeId { get; set; }
         public FacilityType FacilityType { get; set; }
 
         [Required]

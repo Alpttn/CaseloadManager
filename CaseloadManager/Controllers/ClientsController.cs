@@ -7,23 +7,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CaseloadManager.Data;
 using CaseloadManager.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CaseloadManager.Controllers
 {
+    [Authorize]
     public class ClientsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-        public ClientsController(ApplicationDbContext context)
+        public ClientsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Clients.Include(c => c.StatusType).Include(c => c.User);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var clients = _context.Clients.Include(c => c.StatusType)
+                .Include(c => c.User)
+                .Where(c => c.UserId == user.Id); 
+
+            return View(await clients.ToListAsync());
         }
 
         // GET: Clients/Details/5
