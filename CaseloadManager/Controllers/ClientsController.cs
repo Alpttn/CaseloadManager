@@ -70,10 +70,15 @@ namespace CaseloadManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,UserId")] Client client)
+        public async Task<IActionResult> Create([Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityId,UserId")] Client client)
         {
+            var user = await GetCurrentUserAsync();
+            ModelState.Remove("User");
+            ModelState.Remove("UserId");
+
             if (ModelState.IsValid)
             {
+                client.UserId = user.Id;
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
