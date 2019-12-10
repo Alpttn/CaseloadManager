@@ -12,7 +12,7 @@ namespace CaseloadManager.Models
         public int FacilityId { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Facility Name")]
         public string Name { get; set; }
 
         [Required]
