@@ -4,7 +4,30 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+    <style>
+        .HighlightStatusType1 {
+            background-color: #F65c78;
+        }
+        .HighlightStatusType2 {
+            background-color: #FFD271;
+        }
+        .HighlightStatusType3 {
+            background-color: #C3F584;
+        }
+        .HighlightStatusType4 {
+            background-color: #FFF3AF;
+        }
+        .HighlightStatusType5 {
+            background-color: #BBBBBB;
+        }
+
+        .page_Header {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+<h1>Caseload</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,33 +36,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstInitial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StatusType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FacilityId)
+                @Html.DisplayNameFor(model => model.Facility.Name)
             </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+    if (item.StatusTypeId == 1) { 
+        <tr class="HighlightStatusType1">
             <td>
-                @Html.DisplayFor(modelItem => item.FirstInitial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StatusType.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FacilityId)
+                @Html.DisplayFor(modelItem => item.Facility.Name)
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
@@ -47,6 +65,81 @@
                 <a asp-action="Delete" asp-route-id="@item.ClientId">Discharge</a>
             </td>
         </tr>
+     }
+     else if (item.StatusTypeId == 2) {
+    <tr class="HighlightStatusType2">
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Facility.Name)
+        </td>
+        <td>
+            <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+            <a asp-action="Edit" asp-route-id="@item.ClientId">Edit Status</a> |
+            <a asp-action="Delete" asp-route-id="@item.ClientId">Discharge</a>
+        </td>
+    </tr>
+    }
+    else if (item.StatusTypeId == 3)
+    {
+    <tr class="HighlightStatusType3">
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Facility.Name)
+        </td>
+        <td>
+            <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+            <a asp-action="Edit" asp-route-id="@item.ClientId">Edit Status</a> |
+            <a asp-action="Delete" asp-route-id="@item.ClientId">Discharge</a>
+        </td>
+    </tr>
+    }
+    else if (item.StatusTypeId == 4)
+    {
+    <tr class="HighlightStatusType4">
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Facility.Name)
+        </td>
+        <td>
+            <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+            <a asp-action="Edit" asp-route-id="@item.ClientId">Edit Status</a> |
+            <a asp-action="Delete" asp-route-id="@item.ClientId">Discharge</a>
+        </td>
+    </tr>
+    }else if (item.StatusTypeId == 5)
+    {
+    <tr class="HighlightStatusType5">
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Facility.Name)
+        </td>
+        <td>
+            <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+            <a asp-action="Edit" asp-route-id="@item.ClientId">Edit Status</a> |
+            <a asp-action="Delete" asp-route-id="@item.ClientId">Discharge</a>
+        </td>
+    </tr>
+    }
 }
     </tbody>
 </table>

@@ -31,6 +31,7 @@ namespace CaseloadManager.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
             var clients = _context.Clients.Include(c => c.StatusType)
                 .Include(c => c.User)
+                .Include(c => c.Facility)
                 .Where(c => c.UserId == user.Id); 
 
             return View(await clients.ToListAsync());
