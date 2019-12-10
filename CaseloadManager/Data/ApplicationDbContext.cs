@@ -54,16 +54,16 @@ namespace CaseloadManager.Data
                 FirstName = "Allison",
                 LastName = "Patton",
                 LicenseNumber = "1222020",
-                UserName = "Allie@gmail.com",
-                NormalizedUserName = "ALLIE@GMAIL.COM",
-                Email = "allie@gmail.com",
-                NormalizedEmail = "ALLIE@GMAIL.COM",
+                UserName = "Alliep@gmail.com",
+                NormalizedUserName = "ALLIEP@GMAIL.COM",
+                Email = "alliep@gmail.com",
+                NormalizedEmail = "ALLIEP@GMAIL.COM",
                 EmailConfirmed = true,
                 LockoutEnabled = false,
                 SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794578",
                 Id = "00000000-ffff-ffff-ffff-ffffffffffff1"
             };
-            user2.PasswordHash = passwordHash.HashPassword(user2, "SLP8*");
+            user2.PasswordHash = passwordHash.HashPassword(user2, "SLPslp8*");
             modelBuilder.Entity<ApplicationUser>().HasData(user2);
 
             //create facility types
