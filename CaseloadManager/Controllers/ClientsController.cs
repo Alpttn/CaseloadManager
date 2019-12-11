@@ -48,6 +48,7 @@ namespace CaseloadManager.Controllers
             var client = await _context.Clients
                 .Include(c => c.StatusType)
                 .Include(c => c.User)
+                .Include(c => c.Facility)
                 .FirstOrDefaultAsync(m => m.ClientId == id);
             if (client == null)
             {
