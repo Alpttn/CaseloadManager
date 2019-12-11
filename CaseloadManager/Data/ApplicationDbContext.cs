@@ -5,7 +5,6 @@ using CaseloadManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using CaseloadManager.Models.FacilityViewModels;
 
 namespace CaseloadManager.Data
 {
@@ -404,6 +403,5 @@ namespace CaseloadManager.Data
         }
 
 
-        public DbSet<CaseloadManager.Models.FacilityViewModels.MyFacilitiesViewModel> MyFacilitiesViewModel { get; set; }
     }
 }

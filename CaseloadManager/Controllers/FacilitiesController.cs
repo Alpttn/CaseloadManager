@@ -9,7 +9,6 @@ using CaseloadManager.Data;
 using CaseloadManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using CaseloadManager.Models.FacilityViewModels;
 
 namespace CaseloadManager.Controllers
 {
@@ -29,23 +28,14 @@ namespace CaseloadManager.Controllers
         // GET: Facilities
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Facilities.Include(f => f.FacilityType).Include(f => f.User);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var facilities = _context.Facilities
+                .Include(f => f.FacilityType)
+                .Include(f => f.User)
+                .Where(c => c.UserId == user.Id);
+            return View(await facilities.ToListAsync());
         }
 
-        //Facilities/MyFacilities
-        public async Task<IActionResult> MyFacilities()
-        {
-            var model = new MyFacilitiesViewModel();
-
-            var user = await GetCurrentUserAsync();
-
-            var myFacilities = await _context.Facilities
-                                        .Include(p => p.User)
-                                        .Where(p => p.UserId == user.Id).ToListAsync();
-            model.Facilities = myFacilities;
-            return View(model);
-        }
 
         // GET: Facilities/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -82,8 +72,13 @@ namespace CaseloadManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FacilityId,Name,Address,FacilityTypeId,UserId")] Facility facility)
         {
+            var user = await GetCurrentUserAsync();
+            ModelState.Remove("User");
+            ModelState.Remove("UserId");
+
             if (ModelState.IsValid)
             {
+                facility.UserId = user.Id;
                 _context.Add(facility);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
