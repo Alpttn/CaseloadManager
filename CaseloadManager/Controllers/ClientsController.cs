@@ -58,11 +58,19 @@ namespace CaseloadManager.Controllers
         }
 
         // GET: Clients/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name");
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
-            return View();
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+
+            var viewModel = new ClientCreateViewModel()
+            {
+                Facilities = await _context.Facilities.Where(c => c.UserId == user.Id).ToListAsync()
+            };
+
+            ViewData["FacilityId"] = new SelectList(viewModel.Facilities, "FacilityId", "Name");
+            return View(viewModel);
         }
 
         // POST: Clients/Create
@@ -70,17 +78,28 @@ namespace CaseloadManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,UserId")] Client client)
+        public async Task<IActionResult> Create(ClientCreateViewModel viewModel)
         {
+            var user = await GetCurrentUserAsync();
+            ModelState.Remove("Client.User");
+            ModelState.Remove("Client.UserId");
+            viewModel.Client.User = user;
+            viewModel.Client.UserId = user.Id;
+
+
             if (ModelState.IsValid)
             {
-                _context.Add(client);
+                //viewModel.Client.UserId = user.Id;
+                _context.Add(viewModel.Client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
-            return View(client);
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", viewModel.Client.StatusTypeId);
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
+            viewModel.Facilities = await _context.Facilities.Where(c => c.UserId == user.Id).ToListAsync();
+            ViewData["FacilityId"] = new SelectList(viewModel.Facilities, "FacilityId", "Name");
+
+            return View(viewModel);
         }
 
         // GET: Clients/Edit/5
@@ -97,6 +116,7 @@ namespace CaseloadManager.Controllers
                 return NotFound();
             }
             ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
             return View(client);
         }
