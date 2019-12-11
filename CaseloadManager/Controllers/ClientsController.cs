@@ -44,8 +44,13 @@ namespace CaseloadManager.Controllers
             {
                 return NotFound();
             }
+            var viewModel = new ClientEditViewModel()
+            {
+                Assessments = await _context.Assessments.ToListAsync(),
+                Clients = await _context.Clients.ToListAsync()
+            };
 
-            var client = await _context.Clients
+             viewModel.client = await _context.Clients
                 .Include(c => c.StatusType)
                 .Include(c => c.User)
                 .Include(c => c.Facility)
@@ -55,7 +60,7 @@ namespace CaseloadManager.Controllers
                 return NotFound();
             }
 
-            return View(client);
+            return View(viewModel);
         }
 
         // GET: Clients/Create

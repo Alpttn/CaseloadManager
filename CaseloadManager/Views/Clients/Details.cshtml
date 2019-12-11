@@ -1,4 +1,4 @@
-﻿@model CaseloadManager.Models.Client
+﻿@model CaseloadManager.Models.ClientEditViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -10,47 +10,52 @@
     <h4>Client</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.FullName)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.FullName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Birthdate)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Birthdate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Birthdate)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Birthdate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Facility.Name)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Facility.Name)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Facility.Name)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Facility.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StatusType)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.StatusType)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StatusType.Name)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.StatusType.Name)
         </dd>
-        @if (Model.Diagnosis != null) {
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Diagnosis)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Diagnosis)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SessionsPerWeek)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SessionsPerWeek)
-        </dd>
+        
+        @if (Model.Client.Diagnosis != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.Diagnosis)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.Diagnosis)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.SessionsPerWeek)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.SessionsPerWeek)
+            </dd>
         }
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ClientId">Edit</a> |
+    <button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a> </button>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
