@@ -48,8 +48,9 @@ namespace CaseloadManager.Controllers
         }
 
         // GET: Assessments/Create
-        public IActionResult Create()
+        public IActionResult Create(int clientId)
         {
+
             return View();
         }
 

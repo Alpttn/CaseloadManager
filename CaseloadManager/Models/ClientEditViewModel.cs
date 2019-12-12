@@ -8,6 +8,8 @@ namespace CaseloadManager.Models
     public class ClientEditViewModel
     {
         public virtual ICollection<Assessment> Assessments { get; set; }
+
+        public Assessment Assessment { get; set; }
         public virtual ICollection<Client> Clients { get; set; }
         public Client Client { get; set; }
     }

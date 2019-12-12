@@ -44,18 +44,19 @@ namespace CaseloadManager.Controllers
             {
                 return NotFound();
             }
+
             var viewModel = new ClientEditViewModel()
             {
                 Assessments = await _context.Assessments.ToListAsync(),
                 Clients = await _context.Clients.ToListAsync()
             };
 
-             viewModel.client = await _context.Clients
+             viewModel.Client = await _context.Clients
                 .Include(c => c.StatusType)
                 .Include(c => c.User)
                 .Include(c => c.Facility)
                 .FirstOrDefaultAsync(m => m.ClientId == id);
-            if (client == null)
+            if (viewModel.Client == null)
             {
                 return NotFound();
             }

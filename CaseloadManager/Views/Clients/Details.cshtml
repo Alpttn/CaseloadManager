@@ -34,9 +34,15 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Client.StatusType.Name)
         </dd>
-        
-        @if (Model.Client.Diagnosis != null)
-        {
+
+        @*@if (Model.Assessment.TestName != null)
+        {*@
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Assessment.TestName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Assessment.TestName)
+            </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Client.Diagnosis)
             </dt>
@@ -49,11 +55,13 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Client.SessionsPerWeek)
             </dd>
-        }
+        @*}*@
     </dl>
 </div>
 <div>
-    <button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a> </button>
+    @*return RedirectToAction("actionname", "controllername");*@
+    @Html.ActionLink("Create", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null);
+    <button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |
