@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+@*<h1>Details</h1>*@
 
 <div>
     <h4>Client</h4>
@@ -35,17 +35,40 @@
             @Html.DisplayFor(model => model.Client.StatusType.Name)
         </dd>
     </dl>
+
+    <p>Test(s) Administered: </p>
     @if (ViewBag.HasAssessment == "true")
     {
-        @foreach (var item in Model.ClientAssessments)
-        {
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(modelItem => item.Assessment.TestName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.Assessment.TestName)
-            </dd>
-        }
+        <dl class="row">
+            @foreach (var item in Model.ClientAssessments)
+            {
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.Assessment.TestName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.Assessment.TestName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.StandarizedScore)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.StandarizedScore)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.DateAdministered)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.DateAdministered)
+                </dd>
+            }
+        </dl>
+        <br />
+<div>
+    @*return RedirectToAction("actionname", "controllername");*@
+    @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
+    @*<button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>*@
+</div>
+    <br />
 
 
         <dt class="col-sm-2">
@@ -60,15 +83,8 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Client.SessionsPerWeek)
         </dd>
-
-
     }
 
-</div>
-<div>
-    @*return RedirectToAction("actionname", "controllername");*@
-    @Html.ActionLink("Create", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null);
-    <button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |

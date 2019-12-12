@@ -76,6 +76,7 @@ namespace CaseloadManager.Controllers
             ViewData["AssessmentId"] = new SelectList(_context.Assessments, "AssessmentId", "TestName", clientAssessment.AssessmentId);
             ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "FullName", clientAssessment.ClientId);
             return View(clientAssessment);
+            //return RedirectToAction(nameof(Index));
         }
 
         // GET: ClientAssessments/Edit/5
