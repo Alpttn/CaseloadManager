@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    .HighlightStandardizedScore {
+        color: #F65c78;
+    }.HighlightStandardizedScoreGreen {
+        color: #C3F584;
+    }
+</style>
 
 @*<h1>Details</h1>*@
 
@@ -35,19 +42,19 @@
             @Html.DisplayFor(model => model.Client.StatusType.Name)
         </dd>
     </dl>
-    @if (Model.Client.StatusTypeId != 1)
+    @if (Model.Client.StatusTypeId != 1 && Model.Client.StatusTypeId != 5 && Model.Client.StatusTypeId != 4)
     {
-<div>
-    @*return RedirectToAction("actionname", "controllername");*@
-    @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
-    @*<button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>*@
-</div>
-    <br />
+        <div>
+            @*return RedirectToAction("actionname", "controllername");*@
+            @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
+            @*<button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>*@
+        </div>
+        <br />
     }
 
     @if (ViewBag.HasAssessment == "true")
     {
-    <p>Test(s) Administered: </p>
+        <p>Test(s) Administered: </p>
         <dl class="row">
             @foreach (var item in Model.ClientAssessments)
             {
@@ -57,12 +64,25 @@
                 <dd class="col-sm-10">
                     @Html.DisplayFor(modelItem => item.Assessment.TestName)
                 </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(modelItem => item.StandarizedScore)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(modelItem => item.StandarizedScore)
-                </dd>
+                @if (item.StandarizedScore < 78)
+                {
+                    <dt class="col-sm-2, HighlightStandardizedScore">
+                        @Html.DisplayNameFor(modelItem => item.StandarizedScore)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => item.StandarizedScore)
+                    </dd>
+                }
+                else
+                {
+                    <dt class="col-sm-2, HighlightStandardizedScoreGreen">
+                        @Html.DisplayNameFor(modelItem => item.StandarizedScore)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => item.StandarizedScore)
+                    </dd>
+                }
+
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(modelItem => item.DateAdministered)
                 </dt>
@@ -70,24 +90,35 @@
                     @Html.DisplayFor(modelItem => item.DateAdministered)
                 </dd>
             }
+            @if (Model.Client.StatusTypeId == 2)
+            {
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Eligible</a> |
+                <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Ineligible</a>
+            </div>
+            }
         </dl>
         <br />
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.Diagnosis)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.Diagnosis)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.SessionsPerWeek)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.SessionsPerWeek)
-        </dd>
+        @if (Model.Client.StatusTypeId == 3 || Model.Client.StatusTypeId == 5 && ViewBag.HasAssessment == "true")
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.Diagnosis)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.Diagnosis)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.SessionsPerWeek)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.SessionsPerWeek)
+            </dd>
+        }
     }
 
 </div>
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |
     <a asp-action="Index">Back to List</a>
