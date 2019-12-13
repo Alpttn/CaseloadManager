@@ -178,6 +178,62 @@ namespace CaseloadManager.Controllers
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
             return View(client);
         }
+        //Edit status method
+        // GET: Clients/Edit/5
+        public async Task<IActionResult> EditStatus(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
+            return View(client);
+        }
+
+        // POST: Clients/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditStatus(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,UserId")] Client client)
+        {
+            if (id != client.ClientId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(client);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ClientExists(client.ClientId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
+            return View(client);
+        }
 
         // GET: Clients/Delete/5
         public async Task<IActionResult> Delete(int? id)
