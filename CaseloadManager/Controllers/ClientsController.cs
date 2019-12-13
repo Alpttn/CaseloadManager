@@ -45,16 +45,37 @@ namespace CaseloadManager.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients
-                .Include(c => c.StatusType)
-                .Include(c => c.User)
-                .FirstOrDefaultAsync(m => m.ClientId == id);
-            if (client == null)
+            var viewModel = new ClientEditViewModel();
+
+            viewModel.ClientAssessments = await _context.ClientAssessments
+               .Include(c => c.Client)
+               .ThenInclude(Client => Client.StatusType)
+               .Include(c => c.Client)
+               .ThenInclude(Client => Client.User)
+               .Include(c => c.Client)
+               .ThenInclude(Client => Client.Facility)
+               .Include(c => c.Assessment)
+               .Where(c => c.ClientId == id).ToListAsync();
+
+            viewModel.Client = await _context.Clients
+                    .Include(c => c.StatusType)
+                    .Include(c => c.User)
+                    .Include(c => c.Facility)
+                    .FirstOrDefaultAsync(c => c.ClientId == id);
+
+            ViewBag.HasAssessment = "true";
+
+            if (viewModel.ClientAssessments.Count == 0)
             {
-                return NotFound();
+                ViewBag.HasAssessment = "false";
+                viewModel.Client = await _context.Clients
+                    .Include(c => c.StatusType)
+                    .Include(c => c.User)
+                    .Include(c => c.Facility)
+                    .FirstOrDefaultAsync(c => c.ClientId == id);
             }
 
-            return View(client);
+            return View(viewModel);
         }
 
         // GET: Clients/Create

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CaseloadManager.Models.ClientAssessment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Clients who have been assessed:</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assessment.TestName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StandarizedScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAdministered)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assessment.TestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StandarizedScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdministered)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ClientAssessmentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ClientAssessmentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClientAssessmentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
