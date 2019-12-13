@@ -74,7 +74,7 @@ namespace CaseloadManager.Controllers
                 //Response.RedirectToRoute("Product",
                 //new { clientid = "ClientId" });
                 //return RedirectToRoute($"Clients/Details/{clientAssessment.ClientId}");
-                return RedirectToRoute("/Clients/Details", new { clientId = clientAssessment.ClientId });
+                return Redirect($"/Clients/Details/{clientAssessment.ClientId}");
                 //return RedirectToAction(nameof(Index));
             }
             ViewData["AssessmentId"] = new SelectList(_context.Assessments, "AssessmentId", "TestName", clientAssessment.AssessmentId);
