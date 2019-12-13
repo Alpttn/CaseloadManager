@@ -35,10 +35,19 @@
             @Html.DisplayFor(model => model.Client.StatusType.Name)
         </dd>
     </dl>
+    @if (Model.Client.StatusTypeId != 1)
+    {
+<div>
+    @*return RedirectToAction("actionname", "controllername");*@
+    @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
+    @*<button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>*@
+</div>
+    <br />
+    }
 
-    <p>Test(s) Administered: </p>
     @if (ViewBag.HasAssessment == "true")
     {
+    <p>Test(s) Administered: </p>
         <dl class="row">
             @foreach (var item in Model.ClientAssessments)
             {
@@ -63,13 +72,6 @@
             }
         </dl>
         <br />
-<div>
-    @*return RedirectToAction("actionname", "controllername");*@
-    @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
-    @*<button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>*@
-</div>
-    <br />
-
 
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Client.Diagnosis)
