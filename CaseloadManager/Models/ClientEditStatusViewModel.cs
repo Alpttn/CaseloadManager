@@ -7,5 +7,7 @@ namespace CaseloadManager.Models
 {
     public class ClientEditStatusViewModel
     {
+        public Client Client { get; set; }
+        public virtual ICollection<Facility> Facilities { get; set; }
     }
 }
