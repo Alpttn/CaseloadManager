@@ -150,7 +150,7 @@ namespace CaseloadManager.Controllers
             var goal = await _context.Goals.FindAsync(id);
             _context.Goals.Remove(goal);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Redirect($"/Clients/Details/{goal.ClientId}");
         }
 
         private bool GoalExists(int id)
