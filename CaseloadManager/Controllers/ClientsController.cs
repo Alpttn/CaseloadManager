@@ -150,7 +150,7 @@ namespace CaseloadManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,UserId")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityId,UserId")] Client client)
         {
             if (id != client.ClientId)
             {
@@ -159,8 +159,8 @@ namespace CaseloadManager.Controllers
             var user = await GetCurrentUserAsync();
             client.User = user;
             client.UserId = user.Id;
-            //ModelState.Remove("Client.User");
-            //ModelState.Remove("Client.UserId");
+            ModelState.Remove("User");
+            ModelState.Remove("UserId");
 
             if (ModelState.IsValid)
             {
