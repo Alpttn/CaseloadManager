@@ -6,7 +6,9 @@
 <style>
     .HighlightStandardizedScore {
         color: #F65c78;
-    }.HighlightStandardizedScoreGreen {
+    }
+
+    .HighlightStandardizedScoreGreen {
         color: #C3F584;
     }
 </style>
@@ -45,9 +47,7 @@
     @if (Model.Client.StatusTypeId != 1 && Model.Client.StatusTypeId != 5 && Model.Client.StatusTypeId != 4)
     {
         <div>
-            @*return RedirectToAction("actionname", "controllername");*@
             @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
-            @*<button <a asp-action="Create" asp-controller="Assessment" asp-route-id="@Model.Client.ClientId">Add Assessment</a></button>*@
         </div>
         <br />
     }
@@ -92,10 +92,10 @@
             }
             @if (Model.Client.StatusTypeId == 2)
             {
-            <div>
-                <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Eligible</a> |
-                <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Ineligible</a>
-            </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Eligible</a> |
+                    <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Ineligible</a>
+                </div>
             }
         </dl>
         <br />
@@ -113,13 +113,39 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Client.SessionsPerWeek)
             </dd>
+
+            @if (ViewBag.HasGoal == "true")
+            {
+                <p>Client Goals: </p>
+                <dl class="row">
+                    @foreach (var item in Model.Client.Goals)
+                    {
+                        
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.Title)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(modelItem => item.Description)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </dd>
+                    }
+                </dl>
+            }
         }
     }
 
-</div>
+    @Html.ActionLink("Add Goal to Client", "Create", "Goals", new { clientId = @Model.Client.ClientId }, null)
 
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
