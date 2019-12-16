@@ -59,12 +59,6 @@ namespace CaseloadManager.Controllers
                .ThenInclude(Client => Client.Goals)
                .Where(c => c.ClientId == id).ToListAsync();
 
-            //viewModel.Goals = await _context.Goals
-            //        .Include(g => g.Title)
-            //        .Include(g => g.Description)
-            //        .Where(c => c.ClientId == id).ToListAsync();
-                    //.FirstOrDefaultAsync(g => g.ClientId == id);
-
             viewModel.Client = await _context.Clients
                     .Include(c => c.StatusType)
                     .Include(c => c.User)

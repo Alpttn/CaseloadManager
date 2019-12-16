@@ -120,12 +120,12 @@
                 <dl class="row">
                     @foreach (var item in Model.Client.Goals)
                     {
-                        
+
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(modelItem => item.Title)
                         </dt>
                         <dd class="col-sm-10">
-                            @Html.DisplayFor(modelItem => item.Title)
+                            @Html.DisplayFor(modelItem => item.Title) @Html.ActionLink("Delete Goal", "Delete", "Goals", new { clientId = @Model.Client.ClientId }, null)
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(modelItem => item.Description)
@@ -133,6 +133,9 @@
                         <dd class="col-sm-10">
                             @Html.DisplayFor(modelItem => item.Description)
                         </dd>
+                        @*<div>
+                            @Html.ActionLink("Delete Goal", "Delete", "Goals", new { clientId = @Model.Client.ClientId }, null)
+                        </div>*@
                     }
                 </dl>
             }
