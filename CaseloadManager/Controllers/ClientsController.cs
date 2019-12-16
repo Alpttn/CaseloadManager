@@ -131,7 +131,10 @@ namespace CaseloadManager.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients.FindAsync(id);
+            var client = new Client();
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            client = await _context.Clients.FindAsync(id);
+            
             if (client == null)
             {
                 return NotFound();
@@ -147,12 +150,18 @@ namespace CaseloadManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,UserId")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,FacilityId,UserId")] Client client)
         {
             if (id != client.ClientId)
             {
                 return NotFound();
             }
+            var user = await GetCurrentUserAsync();
+            client.User = user;
+            client.UserId = user.Id;
+            ModelState.Remove("User");
+            ModelState.Remove("UserId");
+            //ModelState.Remove("FacilityId");
 
             if (ModelState.IsValid)
             {
@@ -176,6 +185,63 @@ namespace CaseloadManager.Controllers
             }
             ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
+            return View(client);
+        }
+        //Edit status method
+        // GET: Clients/Edit/5
+        public async Task<IActionResult> EditClientStatus(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
+            return View(client);
+        }
+
+        // POST: Clients/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditClientStatus(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,UserId")] Client client)
+        {
+            if (id != client.ClientId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    ModelState.Remove("Client.UserId");
+                    _context.Update(client);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ClientExists(client.ClientId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
             return View(client);
         }
 
