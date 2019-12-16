@@ -10,5 +10,8 @@ namespace CaseloadManager.Models
         public virtual ICollection<ClientAssessment> ClientAssessments { get; set; }
 
         public Client Client { get; set; }
+        public Goal Goal { get; set; }
+
+        public virtual ICollection<Goal> Goals { get; set; }
     }
 }

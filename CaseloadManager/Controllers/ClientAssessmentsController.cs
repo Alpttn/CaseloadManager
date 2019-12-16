@@ -71,17 +71,12 @@ namespace CaseloadManager.Controllers
                 
                 _context.Add(clientAssessment);
                 await _context.SaveChangesAsync();
-                //Response.RedirectToRoute("Product",
-                //new { clientid = "ClientId" });
-                //return RedirectToRoute($"Clients/Details/{clientAssessment.ClientId}");
+                
                 return Redirect($"/Clients/Details/{clientAssessment.ClientId}");
-                //return RedirectToAction(nameof(Index));
             }
             ViewData["AssessmentId"] = new SelectList(_context.Assessments, "AssessmentId", "TestName", clientAssessment.AssessmentId);
             ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "FullName", clientAssessment.ClientId);
             return RedirectToRoute("/Clients/Details", new { clientId = clientAssessment.ClientId });
-            //return View(clientAssessment);
-            //return RedirectToAction(nameof(Index));
         }
 
         // GET: ClientAssessments/Edit/5
