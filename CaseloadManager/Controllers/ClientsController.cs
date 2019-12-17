@@ -32,7 +32,7 @@ namespace CaseloadManager.Controllers
             var clients = _context.Clients.Include(c => c.StatusType)
                 .Include(c => c.User)
                 .Include(c => c.Facility)
-                .Where(c => c.UserId == user.Id); 
+                .Where(c => c.UserId == user.Id);
 
             return View(await clients.ToListAsync());
         }
@@ -140,7 +140,7 @@ namespace CaseloadManager.Controllers
             var client = new Client();
             var user = await _userManager.GetUserAsync(HttpContext.User);
             client = await _context.Clients.FindAsync(id);
-            
+
             if (client == null)
             {
                 return NotFound();
@@ -167,14 +167,23 @@ namespace CaseloadManager.Controllers
             client.UserId = user.Id;
             ModelState.Remove("User");
             ModelState.Remove("UserId");
-            //ModelState.Remove("FacilityId");
+
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(client);
-                    await _context.SaveChangesAsync();
+                    if (client.ClientAssessmets == null && client.StatusTypeId ==3 )
+                    {
+                        TempData["ErrorMessage"] = "Client needs to be assessed before they can be eligible.";
+                        ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+                        return View(client);
+                    }
+                    else
+                    {
+                        _context.Update(client);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -223,30 +232,30 @@ namespace CaseloadManager.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                var client = new Client();
-                client = await _context.Clients.FindAsync(id);
-                try
+            var client = new Client();
+            client = await _context.Clients.FindAsync(id);
+            try
+            {
+                //ModelState.Remove("Client.UserId");
+                if (client.StatusTypeId != 5)
                 {
-                    //ModelState.Remove("Client.UserId");
-                    if (client.StatusTypeId != 5)
-                    {
-                        client.StatusTypeId = 5;
-                        _context.Update(client);
-                        await _context.SaveChangesAsync();
-                    }
+                    client.StatusTypeId = 5;
+                    _context.Update(client);
+                    await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ClientExists(client.ClientId))
                 {
-                    if (!ClientExists(client.ClientId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
-                return RedirectToAction(nameof(Index));
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
             //}
             //ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
             //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
@@ -254,7 +263,7 @@ namespace CaseloadManager.Controllers
         }
 
         //GET: Clients/Discharge/5
-        
+
 
         //public async Task<IActionResult> Discharge(int? id)
         //{

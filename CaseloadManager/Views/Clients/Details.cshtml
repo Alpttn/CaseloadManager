@@ -17,8 +17,6 @@
     }
 </style>
 
-@*<h1>Details</h1>*@
-
 <div>
     <h4>Client</h4>
     <hr />
@@ -55,6 +53,7 @@
         </div>
         <br />
     }
+
 
     @if (ViewBag.HasAssessment == "true")
     {
@@ -117,39 +116,42 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Client.SessionsPerWeek)
             </dd>
-
-            @if (ViewBag.HasGoal == "true")
+            @if (Model.Client.StatusTypeId == 3)
             {
-                <p>Client Goals: </p>
-                <dl class="row">
-                    @foreach (var item in Model.Client.Goals)
-                    {
+                @Html.ActionLink("Add Goal to Client", "Create", "Goals", new { clientId = @Model.Client.ClientId }, null)
+                @if (ViewBag.HasGoal == "true")
+                {
+                    <p>Client Goals: </p>
+                    <dl class="row">
+                        @foreach (var item in Model.Client.Goals)
+                        {
 
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(modelItem => item.Title)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(modelItem => item.Description)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </dd>
-                        <div class="delete-section">
-                            @Html.ActionLink("Delete Goal", "Delete", "Goals", new { id = item.GoalId }, null)
-                        </div>
-                    }
-                </dl>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(modelItem => item.Title)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(modelItem => item.Description)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </dd>
+                            <div class="delete-section">
+                                @Html.ActionLink("Delete Goal", "Delete", "Goals", new { id = item.GoalId }, null)
+                            </div>
+                        }
+                    </dl>
+                }
+                <br />
+                @Html.ActionLink("Log a therapy session", "Create", "TherapySessions", new { clientId = @Model.Client.ClientId }, null)
             }
         }
     }
 
-    @Html.ActionLink("Add Goal to Client", "Create", "Goals", new { clientId = @Model.Client.ClientId }, null)
 
-    <br />
-    @Html.ActionLink("Log a therapy session", "Create", "TherapySessions", new { clientId = @Model.Client.ClientId }, null)
+
 
 
     <div>
