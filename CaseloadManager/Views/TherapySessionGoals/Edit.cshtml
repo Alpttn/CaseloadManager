@@ -1,0 +1,39 @@
+﻿@model CaseloadManager.Models.TherapySessionGoal
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TherapySessionGoal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TherapySessionGoalId" />
+            <div class="form-group">
+                <label asp-for="GoalId" class="control-label"></label>
+                <select asp-for="GoalId" class="form-control" asp-items="ViewBag.GoalId"></select>
+                <span asp-validation-for="GoalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TherapySessionId" class="control-label"></label>
+                <select asp-for="TherapySessionId" class="form-control" asp-items="ViewBag.TherapySessionId"></select>
+                <span asp-validation-for="TherapySessionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

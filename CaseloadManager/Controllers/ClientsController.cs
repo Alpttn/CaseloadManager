@@ -57,13 +57,14 @@ namespace CaseloadManager.Controllers
                .Include(c => c.Assessment)
                .Include(c => c.Client)
                .ThenInclude(Client => Client.Goals)
+               .Include(c => c.Client)
+               .ThenInclude(Client => Client.TherapySessions)
                .Where(c => c.ClientId == id).ToListAsync();
 
             viewModel.Client = await _context.Clients
                     .Include(c => c.StatusType)
                     .Include(c => c.User)
                     .Include(c => c.Facility)
-                    //.Include(c => c.Goals)
                     .FirstOrDefaultAsync(c => c.ClientId == id);
 
 

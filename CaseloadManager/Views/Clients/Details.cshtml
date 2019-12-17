@@ -140,11 +140,6 @@
                         <div class="delete-section">
                             @Html.ActionLink("Delete Goal", "Delete", "Goals", new { id = item.GoalId }, null)
                         </div>
-
-
-                        @*<div>
-                                @Html.ActionLink("Delete Goal", "Delete", "Goals", new { clientId = @Model.Client.ClientId }, null)
-                            </div>*@
                     }
                 </dl>
             }
@@ -153,8 +148,8 @@
 
     @Html.ActionLink("Add Goal to Client", "Create", "Goals", new { clientId = @Model.Client.ClientId }, null)
 
-
-
+    <br />
+    @Html.ActionLink("Log a therapy session", "Create", "TherapySessions", new { clientId = @Model.Client.ClientId }, null)
 
 
     <div>
