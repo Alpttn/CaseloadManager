@@ -104,7 +104,6 @@
         <td>
             <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
             <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-            @*@Html.ActionLink("Discharge", "Discharge", "Clients", new { id = @Model.Client.ClientId }, null)*@
             <a asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
         </td>
     </tr>
