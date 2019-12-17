@@ -194,44 +194,46 @@ namespace CaseloadManager.Controllers
             return View(client);
         }
         //Edit status method
-        // GET: Clients/Edit/5
-        public async Task<IActionResult> EditClientStatus(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            var client = await _context.Clients.FindAsync(id);
-            if (client == null)
-            {
-                return NotFound();
-            }
-            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+        // GET: Clients/Discharge/5
+        //public async Task<IActionResult> Discharge(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var user = await _userManager.GetUserAsync(HttpContext.User);
+        //    var client = new Client();
+        //    client = await _context.Clients.FindAsync(id);
+        //    if (client == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
 
-            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
-            return View(client);
-        }
+        //    //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
+        //    return View(client);
+        //}
 
         // POST: Clients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditClientStatus(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,UserId")] Client client)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Discharge(int id)
         {
-            if (id != client.ClientId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
+                var client = new Client();
+                client = await _context.Clients.FindAsync(id);
                 try
                 {
-                    ModelState.Remove("Client.UserId");
-                    _context.Update(client);
-                    await _context.SaveChangesAsync();
+                    //ModelState.Remove("Client.UserId");
+                    if (client.StatusTypeId != 5)
+                    {
+                        client.StatusTypeId = 5;
+                        _context.Update(client);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -245,11 +247,32 @@ namespace CaseloadManager.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+            //}
+            //ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
             //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
-            return View(client);
+            //return View(client);
         }
+
+        //GET: Clients/Discharge/5
+        
+
+        //public async Task<IActionResult> Discharge(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var dischargeStatus = await _context.Clients
+        //        .FirstOrDefaultAsync(c => c.ClientId == id);
+        //    if (dischargeStatus.StatusTypeId != 5)
+        //    {
+        //        var dischargeClient = dischargeStatus.StatusTypeId == 5;
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    return View(dischargeStatus);
+        //}
 
         // GET: Clients/Delete/5
         public async Task<IActionResult> Delete(int? id)
