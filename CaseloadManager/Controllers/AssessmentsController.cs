@@ -61,8 +61,6 @@ namespace CaseloadManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AssessmentId,TestName,OldestAllowed,YoungestAllowed")] Assessment assessment)
         {
-            //var user = await GetCurrentUserAsync();
-            
             if (ModelState.IsValid)
             {
                 

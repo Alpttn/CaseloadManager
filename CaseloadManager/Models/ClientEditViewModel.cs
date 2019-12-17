@@ -13,5 +13,8 @@ namespace CaseloadManager.Models
         public Goal Goal { get; set; }
 
         public virtual ICollection<Goal> Goals { get; set; }
+        public TherapySession TherapySession { get; set; }
+        public virtual ICollection<TherapySession> TherapySessions { get; set; }
+        
     }
 }
