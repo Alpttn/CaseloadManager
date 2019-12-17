@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Client therapy sessions</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -16,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Note)
+                @Html.DisplayNameFor(model => model.Client.FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Client)
+                @Html.DisplayNameFor(model => model.Note)
             </th>
             <th></th>
         </tr>
@@ -31,10 +31,10 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Note)
+                @Html.DisplayFor(modelItem => item.Client.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.FirstInitial)
+                @Html.DisplayFor(modelItem => item.Note)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TherapySessionId">Edit</a> |
