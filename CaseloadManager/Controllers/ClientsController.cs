@@ -136,19 +136,21 @@ namespace CaseloadManager.Controllers
             {
                 return NotFound();
             }
-
-            var client = new Client();
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            client = await _context.Clients.FindAsync(id);
+            var viewModel = new ClientInformationEditViewModel()
+            {
+                Facilities = await _context.Facilities.Where(c => c.UserId == user.Id).ToListAsync()
+            };
+            viewModel.Client = await _context.Clients.FindAsync(id);
 
-            if (client == null)
+            if (viewModel.Client == null)
             {
                 return NotFound();
             }
-            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
-            ViewData["ClientId"] = client.ClientId;
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
-            return View(client);
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", viewModel.Client.StatusTypeId);
+            ViewData["FacilityId"] = new SelectList(viewModel.Facilities, "FacilityId", "Name");
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", viewModel.Client.UserId);
+            return View(viewModel);
         }
 
         // POST: Clients/Edit/5
@@ -156,16 +158,16 @@ namespace CaseloadManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstInitial,LastName,Birthdate,Diagnosis,SessionsPerWeek,StatusTypeId,FacilityTypeId,FacilityId,UserId")] Client client)
+        public async Task<IActionResult> Edit(int id,  ClientInformationEditViewModel viewModel)
         {
-            if (id != client.ClientId)
+            if (id != viewModel.Client.ClientId)
             {
                 return NotFound();
             }
             var user = await GetCurrentUserAsync();
-            client.User = user;
-            client.UserId = user.Id;
-            client.ClientAssessmets = await _context.ClientAssessments.Where(c => c.ClientId == client.ClientId).ToListAsync();
+            viewModel.Client.User = user;
+            viewModel.Client.UserId = user.Id;
+            viewModel.Client.ClientAssessmets = await _context.ClientAssessments.Where(c => c.ClientId == viewModel.Client.ClientId).ToListAsync();
             ModelState.Remove("User");
             ModelState.Remove("UserId");
 
@@ -174,21 +176,21 @@ namespace CaseloadManager.Controllers
             {
                 try
                 {
-                    if (client.ClientAssessmets.Count() == 0 && client.StatusTypeId ==3 )
+                    if (viewModel.Client.ClientAssessmets.Count() == 0 && viewModel.Client.StatusTypeId == 3)
                     {
                         TempData["ErrorMessage"] = "Client needs to be assessed before they can be eligible.";
-                        ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
-                        return View(client);
+                        ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", viewModel.Client.StatusTypeId);
+                        return View(viewModel);
                     }
                     else
                     {
-                        _context.Update(client);
+                        _context.Update(viewModel.Client);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientExists(client.ClientId))
+                    if (!ClientExists(viewModel.Client.ClientId))
                     {
                         return NotFound();
                     }
@@ -199,10 +201,10 @@ namespace CaseloadManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
-            ViewData["ClientId"] = client.ClientId;
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
-            return View(client);
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", viewModel.Client.StatusTypeId);
+            ViewData["FacilityId"] = new SelectList(viewModel.Facilities, "FacilityId", "Name");
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", viewModel.Client.UserId);
+            return View(viewModel);
         }
         //Edit status method
         // GET: Clients/Discharge/5
