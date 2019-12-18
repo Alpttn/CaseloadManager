@@ -146,7 +146,7 @@ namespace CaseloadManager.Controllers
                 return NotFound();
             }
             ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
-
+            ViewData["ClientId"] = client.ClientId;
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
             return View(client);
         }
@@ -200,6 +200,7 @@ namespace CaseloadManager.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
+            ViewData["ClientId"] = client.ClientId;
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", client.UserId);
             return View(client);
         }
