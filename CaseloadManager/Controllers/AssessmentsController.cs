@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using CaseloadManager.Data;
 using CaseloadManager.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CaseloadManager.Controllers
 {
+    [Authorize]
     public class AssessmentsController : Controller
     {
         private readonly ApplicationDbContext _context;

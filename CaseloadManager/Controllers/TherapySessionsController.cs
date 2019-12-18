@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using CaseloadManager.Data;
 using CaseloadManager.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CaseloadManager.Controllers
 {
+    [Authorize]
     public class TherapySessionsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -50,14 +52,14 @@ namespace CaseloadManager.Controllers
         }
 
         // GET: TherapySessions/Create
-        public async Task<IActionResult> Create(string clientId)
+        public async Task<IActionResult> Create(int clientId)
         {
-            ViewData["ClientId"] = Int32.Parse(clientId);
-            ViewData["GoalId"] = new SelectList(_context.Goals, "GoalId", "Description");
+            ViewData["ClientId"] = clientId;
+            ViewData["GoalId"] = new SelectList(_context.Goals.Where(g => g.ClientId == clientId), "GoalId", "Description", clientId);
             var therapySession = await _context.TherapySessions
                 .Include(t => t.Client)
                 .ThenInclude(Client => Client.Goals)
-                .FirstOrDefaultAsync(t => t.TherapySessionId == Int32.Parse(clientId));
+                .FirstOrDefaultAsync(t => t.TherapySessionId == clientId);
             return View();
         }
 
