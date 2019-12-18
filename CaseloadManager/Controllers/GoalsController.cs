@@ -48,7 +48,7 @@ namespace CaseloadManager.Controllers
         // GET: Goals/Create
         public IActionResult Create(string ClientId)
         {
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "FullName");
+            ViewData["ClientId"] = ClientId;
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace CaseloadManager.Controllers
                 return Redirect($"/Clients/Details/{goal.ClientId}");
                 //return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "FullName", goal.ClientId);
+            ViewData["ClientId"] = goal.ClientId;
             return View(goal);
         }
 
