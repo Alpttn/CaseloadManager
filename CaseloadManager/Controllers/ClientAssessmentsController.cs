@@ -55,7 +55,7 @@ namespace CaseloadManager.Controllers
         {
 
             ViewData["AssessmentId"] = new SelectList(_context.Assessments, "AssessmentId", "TestName");
-            ViewData["ClientId"] = Int32.Parse(clientId);
+            ViewData["ClientId"] = clientId;
             return View();
         }
 
@@ -75,7 +75,7 @@ namespace CaseloadManager.Controllers
                 return Redirect($"/Clients/Details/{clientAssessment.ClientId}");
             }
             ViewData["AssessmentId"] = new SelectList(_context.Assessments, "AssessmentId", "TestName", clientAssessment.AssessmentId);
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "FullName", clientAssessment.ClientId);
+            ViewData["ClientId"] = clientAssessment.ClientId;
             return RedirectToRoute("/Clients/Details", new { clientId = clientAssessment.ClientId });
         }
 

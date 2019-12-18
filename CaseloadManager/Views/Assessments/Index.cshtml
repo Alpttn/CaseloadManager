@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>List of Assessments you use</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -37,8 +37,8 @@
                 @Html.DisplayFor(modelItem => item.YoungestAllowed)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.AssessmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AssessmentId">Details</a> |
+                @*<a asp-action="Edit" asp-route-id="@item.AssessmentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AssessmentId">Details</a> |*@
                 <a asp-action="Delete" asp-route-id="@item.AssessmentId">Delete</a>
             </td>
         </tr>
