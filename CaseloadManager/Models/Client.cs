@@ -46,6 +46,7 @@ namespace CaseloadManager.Models
         public int? SessionsPerWeek { get; set; }
 
         [Required]
+        [Display(Name = "Status")]
         public int StatusTypeId { get; set; }
         [Display(Name = "Status")]
         public StatusType StatusType { get; set; }

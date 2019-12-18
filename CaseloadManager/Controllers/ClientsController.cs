@@ -165,6 +165,7 @@ namespace CaseloadManager.Controllers
             var user = await GetCurrentUserAsync();
             client.User = user;
             client.UserId = user.Id;
+            client.ClientAssessmets = await _context.ClientAssessments.Where(c => c.ClientId == client.ClientId).ToListAsync();
             ModelState.Remove("User");
             ModelState.Remove("UserId");
 
@@ -173,7 +174,7 @@ namespace CaseloadManager.Controllers
             {
                 try
                 {
-                    if (client.ClientAssessmets == null && client.StatusTypeId ==3 )
+                    if (client.ClientAssessmets.Count() == 0 && client.StatusTypeId ==3 )
                     {
                         TempData["ErrorMessage"] = "Client needs to be assessed before they can be eligible.";
                         ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", client.StatusTypeId);
