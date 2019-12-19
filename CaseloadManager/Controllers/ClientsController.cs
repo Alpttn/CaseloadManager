@@ -168,12 +168,12 @@ namespace CaseloadManager.Controllers
             viewModel.Client.User = user;
             viewModel.Client.UserId = user.Id;
             viewModel.Client.ClientAssessmets = await _context.ClientAssessments.Where(c => c.ClientId == viewModel.Client.ClientId).ToListAsync();
-            ModelState.Remove("User");
-            ModelState.Remove("UserId");
+            //ModelState.Remove("User");
+            //ModelState.Remove("UserId");
 
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     if (viewModel.Client.ClientAssessmets.Count() == 0 && viewModel.Client.StatusTypeId == 3)
@@ -199,12 +199,12 @@ namespace CaseloadManager.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
+            //}
             ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "StatusTypeId", "Name", viewModel.Client.StatusTypeId);
-            ViewData["FacilityId"] = new SelectList(viewModel.Facilities, "FacilityId", "Name");
+            //ViewData["FacilityId"] = new SelectList(viewModel.Facilities, "FacilityId", "Name");
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", viewModel.Client.UserId);
-            return View(viewModel);
+                return RedirectToAction(nameof(Index));
+            //return View(viewModel);
         }
         //Edit status method
         // GET: Clients/Discharge/5
