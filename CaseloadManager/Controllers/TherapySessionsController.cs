@@ -26,10 +26,28 @@ namespace CaseloadManager.Controllers
         }
 
         // GET: TherapySessions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var applicationDbContext = _context.TherapySessions.Include(t => t.Client);
-            return View(await applicationDbContext.ToListAsync());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var therapySessions = from t in _context.TherapySessions.Include(t => t.Client)
+                                       select t;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    therapySessions = therapySessions.OrderByDescending(t => t.ClientId);
+                    break;
+                case "Date":
+                    therapySessions = therapySessions.OrderBy(t => t.Date);
+                    break;
+                case "date_desc":
+                    therapySessions = therapySessions.OrderByDescending(t => t.Date);
+                    break;
+                default:
+                    therapySessions = therapySessions.OrderBy(t => t.ClientId);
+                    break;
+            }
+            return View(await therapySessions.ToListAsync());
         }
 
         // GET: TherapySessions/Details/5
