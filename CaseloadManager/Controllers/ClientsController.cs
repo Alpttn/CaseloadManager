@@ -26,13 +26,19 @@ namespace CaseloadManager.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var clients = _context.Clients.Include(c => c.StatusType)
+            var clients = from c in _context.Clients.Include(c => c.StatusType)
                 .Include(c => c.User)
                 .Include(c => c.Facility)
-                .Where(c => c.UserId == user.Id);
+                .Where(c => c.UserId == user.Id)
+                          select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(p => p.LastName.Contains(searchString));
+            }
 
             return View(await clients.ToListAsync());
         }
