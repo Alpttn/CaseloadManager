@@ -39,8 +39,9 @@
 </div>
 
 <div>
-    @*@Html.ActionLink("Back to Details", "Details", "Clients", new { clientId = @Model.Client.ClientId }, null)*@
-    <a asp-action="Details">Back to List</a>
+    <a asp-controller="Clients"
+       asp-action="Details"
+       asp-route-id="@ViewBag.ClientId">Back to details</a>
 </div>
 
 @section Scripts {

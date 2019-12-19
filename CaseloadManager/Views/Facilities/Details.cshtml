@@ -28,15 +28,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FacilityType.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Id)
-        </dd>
+        
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.FacilityId">Edit</a> |
+    @*<a asp-action="Edit" asp-route-id="@Model.FacilityId">Edit</a> |*@
     <a asp-action="Index">Back to List</a>
 </div>
