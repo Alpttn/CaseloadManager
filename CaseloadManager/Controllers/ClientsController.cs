@@ -26,14 +26,32 @@ namespace CaseloadManager.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.StatusSortParm = String.IsNullOrEmpty(sortOrder) ? "status" : "";
+            ViewBag.FacilitySortParm = String.IsNullOrEmpty(sortOrder) ? "facility" : "";
             var user = await _userManager.GetUserAsync(HttpContext.User);
             var clients = from c in _context.Clients.Include(c => c.StatusType)
                 .Include(c => c.User)
                 .Include(c => c.Facility)
                 .Where(c => c.UserId == user.Id)
                           select c;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    clients = clients.OrderByDescending(c => c.LastName);
+                    break;
+                case "status":
+                    clients = clients.OrderBy(c => c.StatusTypeId);
+                    break;
+                case "facility":
+                    clients = clients.OrderBy(c => c.Facility);
+                    break;
+                default:
+                    clients = clients.OrderBy(c => c.LastName);
+                    break;
+            }
 
             if (!String.IsNullOrEmpty(searchString))
             {

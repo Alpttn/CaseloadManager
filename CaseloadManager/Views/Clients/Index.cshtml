@@ -41,13 +41,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                @Html.ActionLink("Full Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @*@Html.DisplayNameFor(model => model.FullName)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StatusType)
+                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
+                @*@Html.DisplayNameFor(model => model.StatusType)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Facility.Name)
+                @Html.ActionLink("Facility", "Index", new { sortOrder = ViewBag.FacilitySortParm })
+                @*@Html.DisplayNameFor(model => model.Facility.Name)*@
             </th>
         </tr>
     </thead>
