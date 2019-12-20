@@ -9,6 +9,7 @@ using CaseloadManager.Data;
 using CaseloadManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using CaseloadManager.Utilities;
 
 namespace CaseloadManager.Controllers
 {
@@ -31,7 +32,7 @@ namespace CaseloadManager.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var therapySessions = from t in _context.TherapySessions.Include(t => t.Client)
-                                       select t;
+                                  select t;
             switch (sortOrder)
             {
                 case "name_desc":
@@ -49,6 +50,51 @@ namespace CaseloadManager.Controllers
             }
             return View(await therapySessions.ToListAsync());
         }
+        // Index Attendance method
+
+        public async Task<IActionResult> Attendance(string sortOrder)
+        {
+            //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            //var currentDate = System.DateTime.UtcNow;
+            //var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+            //var weekOfYear = cal.GetWeekOfYear(currentDate,
+            //              System.Globalization.CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+
+            var start = DateTime.Now.StartOfWeek();
+            var end = DateTime.Now.EndOfWeek();
+            //var games = _context.Clients
+            //    .Include(c => c.User)
+            //    .Include(c => c.Facility)
+            //    .Include(Client => Client.TherapySessions)
+            //            .Where(c => c.TherapySession.Date >= start && x.Date <= end)
+            //            .OrderBy(x => x.Team.MinAge)
+            //            .ToList();
+
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var clients = _context.Clients
+                .Include(c => c.User)
+                .Include(c => c.Facility)
+                .Include(Client => Client.TherapySessions)
+                .Where(c => c.UserId == user.Id);
+
+            //var currentWeek = GetWeekOfYear()
+
+            //foreach (Client c in clients)
+            //{
+            //    foreach (TherapySession ts in c.TherapySessions)
+            //    {
+            //        if (ts )
+            //    }
+            //}
+
+
+
+            return View(await clients.ToListAsync());
+        }
+
+
 
         // GET: TherapySessions/Details/5
         public async Task<IActionResult> Details(int? id)

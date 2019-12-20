@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CaseloadManager.Models.Client>
+
+@{
+    ViewData["Title"] = "Attendance";
+}
+
+<h1>Attendance</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SessionsPerWeek)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facility.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SessionsPerWeek)
+            </td>
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>
