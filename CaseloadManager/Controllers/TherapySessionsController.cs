@@ -10,6 +10,7 @@ using CaseloadManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using CaseloadManager.Utilities;
+using Z.EntityFramework.Plus;
 
 namespace CaseloadManager.Controllers
 {
@@ -61,22 +62,21 @@ namespace CaseloadManager.Controllers
             //var weekOfYear = cal.GetWeekOfYear(currentDate,
             //              System.Globalization.CalendarWeekRule.FirstDay, DayOfWeek.Monday);
 
+            var user = await _userManager.GetUserAsync(HttpContext.User);
             var start = DateTime.Now.StartOfWeek();
             var end = DateTime.Now.EndOfWeek();
-            //var games = _context.Clients
-            //    .Include(c => c.User)
-            //    .Include(c => c.Facility)
-            //    .Include(Client => Client.TherapySessions)
-            //            .Where(c => c.TherapySession.Date >= start && x.Date <= end)
-            //            .OrderBy(x => x.Team.MinAge)
+            //var tsclients = _context.TherapySessions
+            //    .Include(t => t.Client)
+            //    .ThenInclude(client => client.User)
+            //    .Include(t => t.Client)
+            //    .ThenInclude(c => c.Facility)
+            //            .Where(t => t.Date >= start && t.Date <= end && t.Client.UserId == user.Id)
             //            .ToList();
 
-
-            var user = await _userManager.GetUserAsync(HttpContext.User);
             var clients = _context.Clients
+                .IncludeOptimized(Client => Client.TherapySessions.Where(t => t.Date >= start && t.Date <= end))
                 .Include(c => c.User)
                 .Include(c => c.Facility)
-                .Include(Client => Client.TherapySessions)
                 .Where(c => c.UserId == user.Id);
 
             //var currentWeek = GetWeekOfYear()
@@ -91,7 +91,7 @@ namespace CaseloadManager.Controllers
 
 
 
-            return View(await clients.ToListAsync());
+            return View(clients.ToList());
         }
 
 
