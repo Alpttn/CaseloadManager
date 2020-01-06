@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-CaseloadManager-E5A280A2-C727-4C2B-BCAF-AD09B5474DEE</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\Class.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
