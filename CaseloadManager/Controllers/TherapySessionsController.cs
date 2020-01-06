@@ -109,14 +109,11 @@ namespace CaseloadManager.Controllers
 
                 reader.Close();
 
-
                 var user = await _userManager.GetUserAsync(HttpContext.User);
-                
                 var clients = _context.Clients
-                    .Include(client => client.TherapySessions)
                     .Include(c => c.Facility)
                     .Include(c => c.User)
-                    .Where(c => c.UserId == user.Id);
+                    .Where(c => c.UserId == user.Id && c.StatusTypeId == 3);
 
 
                 //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
