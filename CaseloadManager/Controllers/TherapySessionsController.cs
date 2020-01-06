@@ -69,6 +69,8 @@ namespace CaseloadManager.Controllers
 
         public async Task<IActionResult> Attendance(string sortOrder)
         {
+            List<Client> clientsWithTherapySessions = new List<Client>();
+
             using SqlConnection conn = Connection;
             conn.Open();
             using (SqlCommand cmd = conn.CreateCommand())
@@ -88,7 +90,6 @@ namespace CaseloadManager.Controllers
                 cmd.Parameters.Add(new SqlParameter("@End", end));
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                List<Client> clientsWithTherapySessions = new List<Client>();
                 while (reader.Read())
                 {
                     Client client = new Client
@@ -109,11 +110,62 @@ namespace CaseloadManager.Controllers
 
                 reader.Close();
 
+
+
                 var user = await _userManager.GetUserAsync(HttpContext.User);
                 var clients = _context.Clients
                     .Include(c => c.Facility)
                     .Include(c => c.User)
                     .Where(c => c.UserId == user.Id && c.StatusTypeId == 3);
+                
+                var clientRow = new ClientAttendanceRowViewModel();
+                List<ClientAttendanceRowViewModel> FinalClientAttendanceList = new List<ClientAttendanceRowViewModel>();
+                foreach (Client client in clients)
+                {
+                    if (!clientsWithTherapySessions.Contains(client))
+                    {
+                         clientRow.Client = new Client
+                        {
+                            ClientId = client.ClientId,
+                            FirstInitial = client.FirstInitial,
+                            LastName = client.LastName,
+                            Birthdate = client.Birthdate,
+                            Diagnosis = client.Diagnosis,
+                            SessionsPerWeek = client.SessionsPerWeek,
+                            StatusTypeId = client.StatusTypeId,
+                            FacilityId = client.FacilityId,
+                            UserId = client.UserId
+                        };
+
+                        clientRow.SessionsHad = 0;
+                        //add each row to a list
+                        FinalClientAttendanceList.Add(clientRow);
+                    } else
+                    {
+                        clientRow.Client = new Client
+                        {
+                            ClientId = client.ClientId,
+                            FirstInitial = client.FirstInitial,
+                            LastName = client.LastName,
+                            Birthdate = client.Birthdate,
+                            Diagnosis = client.Diagnosis,
+                            SessionsPerWeek = client.SessionsPerWeek,
+                            StatusTypeId = client.StatusTypeId,
+                            FacilityId = client.FacilityId,
+                            UserId = client.UserId
+                        };
+                        List<Client> therapySessionsCount = new List<Client>();
+                        foreach (var currentClient in clientsWithTherapySessions)
+                        {
+                            if (currentClient == clientRow.Client)
+                            {
+                                therapySessionsCount.Add(currentClient);
+                            }
+                        }
+                        clientRow.SessionsHad = therapySessionsCount.Count();
+                        FinalClientAttendanceList.Add(clientRow);
+                    }
+                }
 
 
                 //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -134,29 +186,11 @@ namespace CaseloadManager.Controllers
                 //            .Where(t => t.Date >= start && t.Date <= end && t.Client.UserId == user.Id)
                 //            .ToList();
 
-                //var user = await _userManager.GetUserAsync(HttpContext.User);
-                //var start = DateTime.Now.StartOfWeek();
-                //var end = DateTime.Now.EndOfWeek();
-                //var clients = _context.Clients
-                //    .IncludeOptimized(Client => Client.TherapySessions.Where(t => t.Date >= start && t.Date <= end))
-                //    .Include(c => c.User)
-                //    .Include(c => c.Facility)
-                //    .Where(c => c.UserId == user.Id);
+                
 
+                
 
-                //if client is in sql return, count how many times, and then store that in list, if not set to 0 then add to the view model list
-
-                //foreach (Client c in clients)
-                //{
-                //    foreach (TherapySession ts in c.TherapySessions)
-                //    {
-                //        if (ts )
-                //    }
-                //}
-
-
-
-                return View(clients);
+                return View(FinalClientAttendanceList);
             }
         }
 
