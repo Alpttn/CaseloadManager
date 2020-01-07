@@ -1,21 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-    <div class="text-center">
-        <h1 class="display-4">Welcome SLP!</h1>
-
+    <br/>
+    <div class="text-center, intro">
+        <h1 class="display-4">Welcome SLP</h1>
+        <br/>
+        <div class="instructions">
+            <h2>Set your caseload up for success!</h2>
+            <br />
+            <p>Add your facilities</p>
+            <p>List the assessment tools you frequently use </p>
+            <p>Quickly view and manage your caseload</p>
+            <p>Check if therapy sessions are in compliance</p>
+        </div>
+        <br />
         <p>
-            <h2>Set your caseload up for SLP success!</h2>
-            <ul>
-            <li>Add your facilities</li>
-            <li>List the assessment tools you frequently use </li>
-            <li>Quickly view and manage your caseload</li>
-            <li>Check if therapy sessions are in compliance</li>
-            </ul>
-        </p>
-        <p>
-            <a asp-action="Index" asp-controller="Clients">View your caseload</a>
+            <a class="btn btn-outline-dark btn-sm " asp-action="Index" asp-controller="Clients">View your caseload</a>
         </p>
 
     </div>

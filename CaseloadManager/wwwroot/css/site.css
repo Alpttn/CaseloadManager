@@ -7,9 +7,12 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.instructions{
+    margin: 3px !important;
+}
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
