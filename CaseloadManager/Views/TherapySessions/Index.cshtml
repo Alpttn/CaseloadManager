@@ -13,10 +13,12 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                @Html.ActionLink("Session Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+                @*@Html.DisplayNameFor(model => model.Date)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Client.FullName)
+                @Html.ActionLink("Full Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @*@Html.DisplayNameFor(model => model.Client.FullName)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Note)
