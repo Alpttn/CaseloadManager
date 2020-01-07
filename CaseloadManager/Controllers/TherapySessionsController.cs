@@ -10,7 +10,6 @@ using CaseloadManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using CaseloadManager.Utilities;
-//using Z.Expressions;
 using Z.EntityFramework.Plus;
 using Microsoft.Data.SqlClient;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -167,29 +166,6 @@ namespace CaseloadManager.Controllers
                         FinalClientAttendanceList.Add(clientRow);
                     }
                 }
-
-
-                //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-                //ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-                //var currentDate = System.DateTime.UtcNow;
-                //var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
-                //var weekOfYear = cal.GetWeekOfYear(currentDate,
-                //              System.Globalization.CalendarWeekRule.FirstDay, DayOfWeek.Monday);
-
-                //var user = await _userManager.GetUserAsync(HttpContext.User);
-                //var start = DateTime.Now.StartOfWeek();
-                //var end = DateTime.Now.EndOfWeek();
-                //var tsclients = _context.TherapySessions
-                //    .Include(t => t.Client)
-                //    .ThenInclude(client => client.User)
-                //    .Include(t => t.Client)
-                //    .ThenInclude(c => c.Facility)
-                //            .Where(t => t.Date >= start && t.Date <= end && t.Client.UserId == user.Id)
-                //            .ToList();
-
-                
-
-                
 
                 return View(FinalClientAttendanceList);
             }
