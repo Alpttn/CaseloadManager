@@ -118,11 +118,12 @@ namespace CaseloadManager.Controllers
                     .Include(c => c.User)
                     .Where(c => c.UserId == user.Id && c.StatusTypeId == 3);
                 
-                var clientRow = new ClientAttendanceRowViewModel();
                 List<ClientAttendanceRowViewModel> FinalClientAttendanceList = new List<ClientAttendanceRowViewModel>();
                 foreach (Client client in clients)
                 {
-                    if (!clientsWithTherapySessions.Contains(client))
+                    var foundClient = clientsWithTherapySessions.Find(c => c.ClientId == client.ClientId);
+                var clientRow = new ClientAttendanceRowViewModel();
+                    if (foundClient == null)
                     {
                          clientRow.Client = new Client
                         {
@@ -157,7 +158,7 @@ namespace CaseloadManager.Controllers
                         List<Client> therapySessionsCount = new List<Client>();
                         foreach (var currentClient in clientsWithTherapySessions)
                         {
-                            if (currentClient == clientRow.Client)
+                            if (currentClient.ClientId == clientRow.Client.ClientId)
                             {
                                 therapySessionsCount.Add(currentClient);
                             }
