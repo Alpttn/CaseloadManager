@@ -19,9 +19,11 @@ align-items: center;
 .my-legend {
     text-align: left;
 }
-
-.my-legend{
-
+/*client details*/
+.client-details{
+    display: flex;
+    flex-direction:column;
+    text-align: left;
 }
 
 /* Provide sufficient contrast against white background */

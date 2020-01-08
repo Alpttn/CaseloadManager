@@ -17,9 +17,9 @@
     }
 </style>
 
-<div>
     <h4>Client</h4>
     <hr />
+<div class="container, client-details">
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Client.FullName)
@@ -96,9 +96,9 @@
             @if (Model.Client.StatusTypeId == 2)
             {
                 @*<div>
-                    <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Eligible</a> |
-                    <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Ineligible</a>
-                </div>*@
+                        <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Eligible</a> |
+                        <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Ineligible</a>
+                    </div>*@
             }
         </dl>
         <br />
@@ -155,6 +155,7 @@
 
 
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |
-        <a asp-action="Index">Back to List</a>
+        <a class="btn btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@Model.Client.ClientId">Edit</a> |
+        <a class="btn btn-outline-dark btn-sm" asp-action="Index">Back to List</a>
     </div>
+</div>

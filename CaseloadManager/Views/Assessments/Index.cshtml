@@ -5,10 +5,11 @@
 }
 
 <h1>Your Assessments</h1>
-
+<br />
 <p>
-    <a class="btn btn-outline-dark btn-sm " asp-action="Create">Add Assessment</a>
+    <a class="btn btn-outline-dark btn-sm" asp-action="Create">Add Assessment</a>
 </p>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -39,7 +40,7 @@
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.AssessmentId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.AssessmentId">Details</a> |*@
-                <a asp-action="Delete" asp-route-id="@item.AssessmentId">Delete</a>
+                <a class="btn btn-outline-dark btn-sm" asp-action="Delete" asp-route-id="@item.AssessmentId">Delete</a>
             </td>
         </tr>
 }

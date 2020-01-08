@@ -52,6 +52,7 @@ namespace CaseloadManager.Models
         public StatusType StatusType { get; set; }
 
         [Required]
+        [Display(Name = "Facility")]
         public int FacilityId { get; set; }
         public Facility Facility { get; set; }
 
