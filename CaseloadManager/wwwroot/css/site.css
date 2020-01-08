@@ -10,6 +10,20 @@ a.navbar-brand {
 .instructions{
     margin: 3px !important;
 }
+
+.top-caseload {
+display: flex;
+justify-content: space-evenly !important;
+align-items: center;
+}
+.my-legend {
+    text-align: left;
+}
+
+.my-legend{
+
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
