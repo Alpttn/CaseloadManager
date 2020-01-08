@@ -51,7 +51,7 @@
 @*Search bar*@
 <form class="form-inline my-2 my-lg-0" asp-area="" asp-controller="Clients" asp-action="Index">
     <input class="form-control mr-sm-2" name="searchString" type="search" placeholder="clients by last name" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn-outline-dark btn-sm" type="submit">Search</button>
 </form>
 
 <div class='my-legend'>
@@ -112,7 +112,7 @@
 </style>
 <br />
 <p>
-    <a asp-action="Create">Add a client</a>
+    <a class="btn btn-outline-dark btn-sm " asp-action="Create">Add a client</a>
 </p>
 <table class="table">
     <thead>
@@ -147,7 +147,7 @@
                         @Html.DisplayFor(modelItem => item.Facility.Name)
                     </td>
                     <td>
-                        <a class="btn btn-outline-dark btn-sm " asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
                         <a class="btn btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
                         <a class="btn btn-outline-dark btn-sm" asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
                     </td>
@@ -166,9 +166,9 @@
                         @Html.DisplayFor(modelItem => item.Facility.Name)
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                        <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                        <a asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
                     </td>
                 </tr>
             }
@@ -185,9 +185,9 @@
                         @Html.DisplayFor(modelItem => item.Facility.Name)
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                        <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                        <a asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
                     </td>
                 </tr>
             }
@@ -204,9 +204,9 @@
                         @Html.DisplayFor(modelItem => item.Facility.Name)
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                        <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                        <a asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
                     </td>
                 </tr>
             }
@@ -223,9 +223,9 @@
                         @Html.DisplayFor(modelItem => item.Facility.Name)
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                        <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                        <a asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                        <a class="btn btn-outline-dark btn-sm" asp-action="Discharge" asp-route-id="@item.ClientId">Discharge</a>
                     </td>
                 </tr>
             }
