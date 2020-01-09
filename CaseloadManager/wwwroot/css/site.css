@@ -25,16 +25,35 @@ align-items: center;
     flex-direction:column;
     text-align: left;
 }
-
+/*Therapy Sessions*/
+.sessionTable-position {
+    margin-right: 175px;
+}
+.txSession-flex{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+/*Facilities*/
 .create-facility {
     margin-left: 300px;
     justify-content: center;
 }
-
-.table {
-    overflow-y: hidden;
+.facility-table{
+    text-align:left;
 }
-
+.assessment-table{
+    text-align:left;
+}
+.txSession-table{
+    text-align:left;
+}
+.compliance-table {
+    text-align: left;
+}
+.compliance-textCenter{
+    text-align:center;
+}
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;

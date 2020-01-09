@@ -6,43 +6,51 @@
 
 <h1>Client therapy sessions</h1>
 <br />
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.ActionLink("Session Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-                @*@Html.DisplayNameFor(model => model.Date)*@
-            </th>
-            <th>
-                @Html.ActionLink("Full Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-                @*@Html.DisplayNameFor(model => model.Client.FullName)*@
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            @*<td>
-                <a asp-action="Edit" asp-route-id="@item.TherapySessionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TherapySessionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TherapySessionId">Delete</a>
-            </td>*@
-        </tr>
-}
-    </tbody>
-</table>
+<div class="txSession-flex">
+    <div class="sessionTable-position">
+        <table class="table table-borderless txSession-table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        <span style="text-decoration:underline">
+                            @Html.ActionLink("Session Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+                            @*@Html.DisplayNameFor(model => model.Date)*@
+                    </th>
+                    <th>
+                        <span style="text-decoration:underline">
+                            @Html.ActionLink("Full Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                            @*@Html.DisplayNameFor(model => model.Client.FullName)*@
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Note)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Client.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Note)
+                        </td>
+                        @*<td>
+                                <a asp-action="Edit" asp-route-id="@item.TherapySessionId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.TherapySessionId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.TherapySessionId">Delete</a>
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <img src="~/css/two-woman-chatting.jpg" alt="Therapy Session" height="300" width="450">
+    </div>
+</div>
