@@ -34,6 +34,12 @@ align-items: center;
     flex-direction:row;
     justify-content:center;
 }
+/*Assessments*/
+.assessment-flex{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
 /*Facilities*/
 .create-facility {
     margin-left: 300px;
@@ -45,8 +51,11 @@ align-items: center;
 .assessment-table{
     text-align:left;
 }
-.txSession-table{
-    text-align:left;
+.assessment-textCenter {
+    text-align: center;
+}
+.txSession-table {
+    text-align: left;
 }
 .compliance-table {
     text-align: left;
