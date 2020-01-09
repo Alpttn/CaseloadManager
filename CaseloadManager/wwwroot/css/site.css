@@ -31,6 +31,10 @@ align-items: center;
     justify-content: center;
 }
 
+.table {
+    overflow-y: hidden;
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;

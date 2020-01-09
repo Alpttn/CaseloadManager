@@ -4,20 +4,20 @@
     ViewData["Title"] = "Attendance";
 }
 
-<h1>Attendance</h1>
+<h1>Compliance</h1>
 
 @*<p>
     <a asp-action="Create">Create New</a>
 </p>*@
 <table class="table">
-    <thead>
+    <thead class=".thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Client.FullName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Client.Facility.Name)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Client.SessionsPerWeek)
             </th>
@@ -33,9 +33,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Client.FullName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Client.Facility.Name)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Client.SessionsPerWeek)
             </td>
