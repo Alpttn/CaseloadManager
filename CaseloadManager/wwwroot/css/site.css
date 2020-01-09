@@ -26,6 +26,11 @@ align-items: center;
     text-align: left;
 }
 
+.create-facility {
+    margin-left: 300px;
+    justify-content: center;
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
