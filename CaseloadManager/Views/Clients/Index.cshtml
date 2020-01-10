@@ -118,22 +118,25 @@
         }
     </style>
     <br />
-    
+
 </div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("Full Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-                @*@Html.DisplayNameFor(model => model.FullName)*@
+                <span style="text-decoration:underline">
+                    @Html.ActionLink("Full Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                    @*@Html.DisplayNameFor(model => model.FullName)*@
             </th>
             <th>
-                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
-                @*@Html.DisplayNameFor(model => model.StatusType)*@
+                <span style="text-decoration:underline">
+                    @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })
+                    @*@Html.DisplayNameFor(model => model.StatusType)*@
             </th>
             <th>
-                @Html.ActionLink("Facility", "Index", new { sortOrder = ViewBag.FacilitySortParm })
-                @*@Html.DisplayNameFor(model => model.Facility.Name)*@
+                <span style="text-decoration:underline">
+                    @Html.ActionLink("Facility", "Index", new { sortOrder = ViewBag.FacilitySortParm })
+                    @*@Html.DisplayNameFor(model => model.Facility.Name)*@
             </th>
         </tr>
     </thead>
