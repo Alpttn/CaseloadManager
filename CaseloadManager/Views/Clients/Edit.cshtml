@@ -4,69 +4,69 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edit Client</h1>
 
-<h4>Client</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Client.ClientId" />
-            <div class="form-group">
-                <label asp-for="Client.FirstInitial" class="control-label"></label>
-                <input asp-for="Client.FirstInitial" class="form-control" />
-                <span asp-validation-for="Client.FirstInitial" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.LastName" class="control-label"></label>
-                <input asp-for="Client.LastName" class="form-control" />
-                <span asp-validation-for="Client.LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.Birthdate" class="control-label"></label>
-                <input asp-for="Client.Birthdate" class="form-control" />
-                <span asp-validation-for="Client.Birthdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.FacilityId" class="control-label"></label>
-                <select asp-for="Client.FacilityId" class="form-control" asp-items="ViewBag.FacilityId"></select>
-            </div>
-            <div class="text-danger mt-2 mb-2">@TempData["ErrorMessage"] </div>
-            <div class="form-group">
-                <label asp-for="Client.StatusTypeId" class="control-label"></label>
-                <select asp-for="Client.StatusTypeId" class="form-control" asp-items="ViewBag.StatusTypeId"></select>
-                <span asp-validation-for="Client.StatusTypeId" class="text-danger"></span>
-            </div>
-            @if (Model.Client.StatusTypeId == 3 || Model.Client.StatusTypeId == 5)
-            {
-            <div class="form-group">
-                <label asp-for="Client.Diagnosis" class="control-label"></label>
-                <input asp-for="Client.Diagnosis" class="form-control" />
-                <span asp-validation-for="Client.Diagnosis" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.SessionsPerWeek" class="control-label"></label>
-                <input asp-for="Client.SessionsPerWeek" class="form-control" />
-                <span asp-validation-for="Client.SessionsPerWeek" class="text-danger"></span>
-            </div>
-            }
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="edit-client_position">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Client.ClientId" />
+                <div class="form-group">
+                    <label asp-for="Client.FirstInitial" class="control-label"></label>
+                    <input asp-for="Client.FirstInitial" class="form-control" />
+                    <span asp-validation-for="Client.FirstInitial" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.LastName" class="control-label"></label>
+                    <input asp-for="Client.LastName" class="form-control" />
+                    <span asp-validation-for="Client.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.Birthdate" class="control-label"></label>
+                    <input asp-for="Client.Birthdate" class="form-control" />
+                    <span asp-validation-for="Client.Birthdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.FacilityId" class="control-label"></label>
+                    <select asp-for="Client.FacilityId" class="form-control" asp-items="ViewBag.FacilityId"></select>
+                </div>
+                <div class="text-danger mt-2 mb-2">@TempData["ErrorMessage"] </div>
+                <div class="form-group">
+                    <label asp-for="Client.StatusTypeId" class="control-label"></label>
+                    <select asp-for="Client.StatusTypeId" class="form-control" asp-items="ViewBag.StatusTypeId"></select>
+                    <span asp-validation-for="Client.StatusTypeId" class="text-danger"></span>
+                </div>
+                @if (Model.Client.StatusTypeId == 3 || Model.Client.StatusTypeId == 5)
+                {
+                    <div class="form-group">
+                        <label asp-for="Client.Diagnosis" class="control-label"></label>
+                        <input asp-for="Client.Diagnosis" class="form-control" />
+                        <span asp-validation-for="Client.Diagnosis" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Client.SessionsPerWeek" class="control-label"></label>
+                        <input asp-for="Client.SessionsPerWeek" class="form-control" />
+                        <span asp-validation-for="Client.SessionsPerWeek" class="text-danger"></span>
+                    </div>
+                }
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-outline-dark btn-sm" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-
 <div>
-    <a asp-controller="Clients"
+    <a class="btn btn-outline-dark btn-sm" asp-controller="Clients"
        asp-action="Details"
        asp-route-id="@Model.Client.ClientId">Back to details</a>
 </div>
 @*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

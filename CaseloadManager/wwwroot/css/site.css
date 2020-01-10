@@ -34,6 +34,9 @@ align-items: center;
 .create-client {
     margin-left: 41%;
 }
+.edit-client_position {
+    margin-left: 41%;
+}
 /*Therapy Sessions*/
 .sessionTable-position {
     margin-right: 175px;
