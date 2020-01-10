@@ -63,6 +63,9 @@ align-items: center;
 .delete-assessment_card{
     margin-left: 37%;
 }
+.assign-test_position {
+    margin-left: 41%;
+}
 /*Facilities*/
 .create-facility {
     margin-left: 41%;
@@ -94,6 +97,9 @@ align-items: center;
 /*Goals*/
 .delete-goal_card {
     margin-left: 37%;
+}
+.create-goal_position {
+    margin-left: 41%;
 }
 
 
