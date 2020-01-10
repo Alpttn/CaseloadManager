@@ -39,7 +39,6 @@ align-items: center;
 }
 /*Therapy Sessions*/
 .sessionTable-position {
-    margin-right: 175px;
     overflow-y: scroll;
     height: 370px;
 }
@@ -91,6 +90,10 @@ align-items: center;
 .compliance-scroll {
     overflow-y: scroll;
     height: 330px;
+}
+/*Goals*/
+.delete-goal_card {
+    margin-left: 37%;
 }
 
 
