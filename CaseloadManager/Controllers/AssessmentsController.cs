@@ -28,6 +28,7 @@ namespace CaseloadManager.Controllers
         // GET: Assessments
         public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
             return View(await _context.Assessments.ToListAsync());
         }
 

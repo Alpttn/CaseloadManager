@@ -45,7 +45,8 @@ namespace CaseloadManager.Controllers
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            var therapySessions = from t in _context.TherapySessions.Include(t => t.Client)
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var therapySessions = from t in _context.TherapySessions.Include(t => t.Client).Where(t => t.Client.UserId == user.Id)
                                   select t;
             switch (sortOrder)
             {
