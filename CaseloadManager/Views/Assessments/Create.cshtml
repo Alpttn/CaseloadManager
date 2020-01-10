@@ -7,32 +7,34 @@
 <h1>Add Assessment</h1>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TestName" class="control-label"></label>
-                <input asp-for="TestName" class="form-control" />
-                <span asp-validation-for="TestName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="YoungestAllowed" class="control-label"></label>
-                <input asp-for="YoungestAllowed" class="form-control" />
-                <span asp-validation-for="YoungestAllowed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OldestAllowed" class="control-label"></label>
-                <input asp-for="OldestAllowed" class="form-control" />
-                <span asp-validation-for="OldestAllowed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Add" class="btn btn-outline-dark btn-sm" />
-            </div>
-        </form>
+<div class="create-assessment">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="TestName" class="control-label"></label>
+                    <input asp-for="TestName" class="form-control" />
+                    <span asp-validation-for="TestName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="YoungestAllowed" class="control-label"></label>
+                    <input asp-for="YoungestAllowed" class="form-control" />
+                    <span asp-validation-for="YoungestAllowed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OldestAllowed" class="control-label"></label>
+                    <input asp-for="OldestAllowed" class="form-control" />
+                    <span asp-validation-for="OldestAllowed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-outline-dark btn-sm" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
+<br />
 <div>
     <a class="btn btn-outline-dark btn-sm" asp-action="Index">Back to List</a>
 </div>

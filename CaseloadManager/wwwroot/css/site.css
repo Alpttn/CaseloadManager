@@ -31,9 +31,14 @@ align-items: center;
     flex-direction:column;
     text-align: left;
 }
+.create-client {
+    margin-left: 41%;
+}
 /*Therapy Sessions*/
 .sessionTable-position {
     margin-right: 175px;
+    overflow-y: scroll;
+    height: 370px;
 }
 .txSession-flex{
     display:flex;
@@ -50,16 +55,21 @@ align-items: center;
     overflow-y: scroll;
     height: 370px;
 }
-
+.create-assessment {
+    margin-left: 41%;
+}
+.delete-assessment_card{
+    margin-left: 37%;
+}
 /*Facilities*/
 .create-facility {
-    margin-left: 300px;
-    justify-content: center;
+    margin-left: 41%;
 }
-.facilitiy-flex{
-    display:flex !important;
-    flex-direction:row;
-    justify-content:space-evenly;
+
+.facilitiy-flex {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 .facility-table {
     text-align: left;
@@ -69,7 +79,16 @@ align-items: center;
     height: 330px;
     margin-right: 40px;
 }
-
+/*Compliance*/
+.compliance-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.compliance-scroll {
+    overflow-y: scroll;
+    height: 330px;
+}
 
 
 .assessment-table {

@@ -8,50 +8,51 @@
 
 <h4>Client</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Client.FirstInitial" class="control-label"></label>
-                <input asp-for="Client.FirstInitial" class="form-control" />
-                <span asp-validation-for="Client.FirstInitial" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.LastName" class="control-label"></label>
-                <input asp-for="Client.LastName" class="form-control" />
-                <span asp-validation-for="Client.LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.Birthdate" class="control-label"></label>
-                <input asp-for="Client.Birthdate" class="form-control" />
-                <span asp-validation-for="Client.Birthdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.Diagnosis" class="control-label"></label>
-                <input asp-for="Client.Diagnosis" class="form-control" />
-                <span asp-validation-for="Client.Diagnosis" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.SessionsPerWeek" class="control-label"></label>
-                <input asp-for="Client.SessionsPerWeek" class="form-control" />
-                <span asp-validation-for="Client.SessionsPerWeek" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.StatusTypeId" class="control-label"></label>
-                <select asp-for="Client.StatusTypeId" class ="form-control" asp-items="ViewBag.StatusTypeId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client.FacilityId" class="control-label"></label>
-                <select asp-for="Client.FacilityId" class="form-control" asp-items="ViewBag.FacilityId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-outline-dark btn-sm" />
-            </div>
-        </form>
+<div class="create-client">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Client.FirstInitial" class="control-label"></label>
+                    <input asp-for="Client.FirstInitial" class="form-control" />
+                    <span asp-validation-for="Client.FirstInitial" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.LastName" class="control-label"></label>
+                    <input asp-for="Client.LastName" class="form-control" />
+                    <span asp-validation-for="Client.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.Birthdate" class="control-label"></label>
+                    <input asp-for="Client.Birthdate" class="form-control" />
+                    <span asp-validation-for="Client.Birthdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.Diagnosis" class="control-label"></label>
+                    <input asp-for="Client.Diagnosis" class="form-control" />
+                    <span asp-validation-for="Client.Diagnosis" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.SessionsPerWeek" class="control-label"></label>
+                    <input asp-for="Client.SessionsPerWeek" class="form-control" />
+                    <span asp-validation-for="Client.SessionsPerWeek" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.StatusTypeId" class="control-label"></label>
+                    <select asp-for="Client.StatusTypeId" class="form-control" asp-items="ViewBag.StatusTypeId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Client.FacilityId" class="control-label"></label>
+                    <select asp-for="Client.FacilityId" class="form-control" asp-items="ViewBag.FacilityId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-outline-dark btn-sm" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
 <div>
     <a class="btn btn-outline-dark btn-sm" asp-action="Index">Back to List</a>
 </div>

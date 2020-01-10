@@ -6,47 +6,54 @@
 
 <h1>Compliance</h1>
 <br />
+<div class="compliance-flex">
+    <div>
+        <img src="~/css/desk alarm.jpg" alt="Therapy Session" height="200" width="350">
+    </div>
+    <div class="compliance-scroll">
+        <table class="table table-borderless compliance-table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Client.FullName)
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.Client.Facility.Name)
+                        </th>*@
+                    <th class="compliance-textCenter">
+                        @Html.DisplayNameFor(model => model.Client.SessionsPerWeek)
+                    </th>
+                    <th class="compliance-textCenter">
+                        @Html.DisplayNameFor(model => model.SessionsHad)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Client.FullName)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.Client.Facility.Name)
+                            </td>*@
+                        <td class="compliance-textCenter">
+                            @Html.DisplayFor(modelItem => item.Client.SessionsPerWeek)
+                        </td>
+                        <td class="compliance-textCenter">
+                            @Html.DisplayFor(modelItem => item.SessionsHad)
+                        </td>
+                        @*<td>
+                                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<table class="table table-borderless compliance-table table-sm">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Client.FullName)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Client.Facility.Name)
-                </th>*@
-            <th  class="compliance-textCenter">
-                @Html.DisplayNameFor(model => model.Client.SessionsPerWeek)
-            </th>
-            <th  class="compliance-textCenter">
-                @Html.DisplayNameFor(model => model.SessionsHad)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Client.FullName)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Client.Facility.Name)
-                    </td>*@
-                <td class="compliance-textCenter">
-                    @Html.DisplayFor(modelItem => item.Client.SessionsPerWeek)
-                </td>
-                <td class="compliance-textCenter">
-                    @Html.DisplayFor(modelItem => item.SessionsHad)
-                </td>
-                @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
-                    </td>*@
-            </tr>
-        }
-    </tbody>
-</table>
+</div>
