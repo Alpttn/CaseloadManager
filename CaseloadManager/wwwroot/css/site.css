@@ -6,6 +6,12 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
+.nav-image{
+    padding:4px;
+}
+.nav-size {
+    height: 95px !important;
+}
 
 .instructions{
     margin: 3px !important;
@@ -40,16 +46,34 @@ align-items: center;
     flex-direction:row;
     justify-content:space-around;
 }
+.assessment-scroll {
+    overflow-y: scroll;
+    height: 370px;
+}
+
 /*Facilities*/
 .create-facility {
     margin-left: 300px;
     justify-content: center;
 }
-.facility-table{
-    text-align:left;
+.facilitiy-flex{
+    display:flex !important;
+    flex-direction:row;
+    justify-content:space-evenly;
 }
-.assessment-table{
-    text-align:left;
+.facility-table {
+    text-align: left;
+}
+.facility-scroll {
+    overflow-y: scroll;
+    height: 330px;
+    margin-right: 40px;
+}
+
+
+
+.assessment-table {
+    text-align: left;
 }
 .assessment-textCenter {
     text-align: center;

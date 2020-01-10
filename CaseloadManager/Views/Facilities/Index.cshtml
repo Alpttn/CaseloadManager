@@ -3,6 +3,17 @@
 @{
     ViewData["Title"] = "Index";
 }
+@*<style>
+    hr {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 1px;
+    }
+</style>*@
 <div>
     <h1>My Facilities</h1>
     <br />
@@ -10,44 +21,51 @@
         <a class="btn btn-outline-dark btn-sm " asp-action="Create">Add a Facility</a>
     </p>
 </div>
+<br />
+<div class="facilitiy-flex">
+    <div class="facility-scroll">
+        <table class="table table-borderless facility-table table-responsive-md">
+            <thead>
+                <tr>
+                    @*<hr />*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FacilityType)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
 
-<div>
-    <table class="table table-borderless facility-table table-sm">
-        <thead>
-            <tr>
-                <th>@*<span style="text-decoration:underline">*@
-    @Html.DisplayNameFor(model => model.Name)
-</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FacilityType)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.FacilityType.Name)
-                </td>
-                <td>
-                    @*<a asp-action="Edit" asp-route-id="@item.FacilityId">Edit</a> |*@
-                    @*<a asp-action="Details" asp-route-id="@item.FacilityId">Details</a> |*@
-                    <a class="btn btn-outline-dark btn-sm" asp-action="Delete" asp-route-id="@item.FacilityId">I no longer work here</a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FacilityType.Name)
+                        </td>
+                        <td>
+                            @*<a asp-action="Edit" asp-route-id="@item.FacilityId">Edit</a> |*@
+                            @*<a asp-action="Details" asp-route-id="@item.FacilityId">Details</a> |*@
+                            @*<a class="btn btn-outline-dark btn-sm" asp-action="Delete" asp-route-id="@item.FacilityId">I no longer work here</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+ 
+    <div>
+        <img src="~/css/manAtDesk.jpg" alt="Office" height="300" width="450">
+    </div>
 </div>
