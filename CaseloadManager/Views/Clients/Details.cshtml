@@ -17,39 +17,64 @@
     }
 </style>
 
-    <h4>Client</h4>
-    <hr />
+<h4>Client</h4>
+<hr />
+
+@*test for card*@
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="~/css/userIcon.png" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Info</h5>
+                <p class="card-text">
+                    <ul class="list-group">
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Client.FullName): @Html.DisplayFor(model => model.Client.FullName)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Client.Birthdate): @Html.DisplayFor(model => model.Client.Birthdate)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Client.Facility.Name): @Html.DisplayFor(model => model.Client.Facility.Name)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Client.StatusType): @Html.DisplayFor(model => model.Client.StatusType.Name)</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+@*test for card*@
+
 <div class="container, client-details">
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.FullName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.Birthdate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.Birthdate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.Facility.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.Facility.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.StatusType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.StatusType.Name)
-        </dd>
-    </dl>
+    @*<dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.FullName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.FullName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.Birthdate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.Birthdate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.Facility.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.Facility.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Client.StatusType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Client.StatusType.Name)
+            </dd>
+        </dl>*@
     @if (Model.Client.StatusTypeId != 1 && Model.Client.StatusTypeId != 5 && Model.Client.StatusTypeId != 4)
     {
         <div>
-            @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
+            <span style="text-decoration:underline">
+                @Html.ActionLink("Add Assessment to Client", "Create", "ClientAssessments", new { clientId = @Model.Client.ClientId }, null)
         </div>
         <br />
     }
@@ -104,7 +129,17 @@
         <br />
         @if (Model.Client.StatusTypeId == 3 || Model.Client.StatusTypeId == 5 && ViewBag.HasAssessment == "true")
         {
-            <dt class="col-sm-2">
+
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.DisplayNameFor(model => model.Client.Diagnosis): @Html.DisplayFor(model => model.Client.Diagnosis)</li>
+                    <li class="list-group-item">@Html.DisplayNameFor(model => model.Client.SessionsPerWeek): @Html.DisplayFor(model => model.Client.SessionsPerWeek)</li>
+                </ul>
+            </div>
+            <br/>
+
+@*old view of table with diagnosis and sessions*@
+            @*<dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Client.Diagnosis)
             </dt>
             <dd class="col-sm-10">
@@ -115,18 +150,34 @@
             </dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Client.SessionsPerWeek)
-            </dd>
+            </dd>*@
+
             @if (Model.Client.StatusTypeId == 3)
             {
-                @Html.ActionLink("Add Goal to Client", "Create", "Goals", new { clientId = @Model.Client.ClientId }, null)
+                <div>
+                    <span style="text-decoration:underline">
+                        @Html.ActionLink("Add Goal to Client", "Create", "Goals", new { clientId = @Model.Client.ClientId }, null)
+                </div>
+                <br/>
                 @if (ViewBag.HasGoal == "true")
                 {
                     <p>Client Goals: </p>
                     <dl class="row">
                         @foreach (var item in Model.Client.Goals)
                         {
+                            <div class="card">
+                                <div class="card-header">
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                                    <div class="delete-section">
+                                        @Html.ActionLink("Delete Goal", "Delete", "Goals", new { id = item.GoalId }, null)
+                                    </div>
+                                </div>
+                            </div>
 
-                            <dt class="col-sm-2">
+                            @*<dt class="col-sm-2">
                                 @Html.DisplayNameFor(modelItem => item.Title)
                             </dt>
                             <dd class="col-sm-10">
@@ -140,12 +191,16 @@
                             </dd>
                             <div class="delete-section">
                                 @Html.ActionLink("Delete Goal", "Delete", "Goals", new { id = item.GoalId }, null)
-                            </div>
+                            </div>*@
                         }
                     </dl>
                 }
                 <br />
-                @Html.ActionLink("Log a therapy session", "Create", "TherapySessions", new { clientId = @Model.Client.ClientId }, null)
+                <div>
+                    <span style="text-decoration:underline">
+                        @Html.ActionLink("Log a therapy session", "Create", "TherapySessions", new { clientId = @Model.Client.ClientId }, null)
+                </div>
+                <br />
             }
         }
     }

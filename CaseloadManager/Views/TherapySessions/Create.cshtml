@@ -4,42 +4,44 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Log a therapy session for this client</h1>
+<h3>Log a therapy session for this client</h3>
 
 
 <hr />
-<div class="row">
-    <div class="col-md-8">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.Hidden("clientId")
-            @*<div class="form-group">
-                    <label asp-for="ClientId" class="control-label"></label>
-                    <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
-                </div>*@
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Client.Goals" class="control-label"></label> <p>Choose One:</p>
-                <select asp-for="@Model.Client.Goals" class="form-control" asp-items="ViewBag.GoalId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label"></label>
-                <input asp-for="Note" class="form-control" />
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="logTx-center">
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.Hidden("clientId")
+                @*<div class="form-group">
+                        <label asp-for="ClientId" class="control-label"></label>
+                        <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Client.Goals" class="control-label"></label> <p>Choose One:</p>
+                    <select asp-for="@Model.Client.Goals" class="form-control" asp-items="ViewBag.GoalId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label"></label>
+                    <input asp-for="Note" class="form-control" />
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Log Session" class="btn btn-outline-dark btn-sm" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-outline-dark btn-sm" asp-action="Index">View all therapy sessions</a>
 </div>
 
 @section Scripts {

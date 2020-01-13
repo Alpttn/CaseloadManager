@@ -53,6 +53,9 @@ align-items: center;
 .txSession-img{
     margin-left: 20px;
 }
+.logTx-center{
+    margin-left: 26%;
+}
 /*Assessments*/
 .assessment-flex {
     display: flex;
